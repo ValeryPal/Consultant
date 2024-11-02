@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block MAIN_CONTENT %}
+<br>
+<br>
+<h3>Вы действительно хотите должность: {{ object }}?</h3>
+<br>
+<br>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-outline-danger">Удалить!!!</button>
+    
+</form>
+               
+{% endblock MAIN_CONTENT %}

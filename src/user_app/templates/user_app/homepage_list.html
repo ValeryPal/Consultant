@@ -1,0 +1,30 @@
+{% extends 'auth_base.html' %}
+
+
+{% block MAIN_CONTENT %}
+<br>
+<br>
+<h1><center> Программа Consultant </center></h1>
+{% if user.is_authenticated %} 
+<br>
+<br>
+<h1><center>Вы авторизованный пользователь: {{ user }} </center> </h1>
+<br>
+<br>
+<th><center><button type="button" class="btn btn-outline-info"><a href="{% url 'user:personal-account-list' %}">Приступить к работе</a></button></center></th>
+    
+{% else %}
+<br>
+<br>
+<h1><center>Вы не авторизованный пользователь.</center></h1>
+<br>
+<br><center>
+    <th><button type="button" class="btn btn-outline-info"><a href="{% url 'user:registration' %}">Регистрация нового пользователя</a></button></th>
+    <th><button type="button" class="btn btn-outline-info"><a href="{% url 'user:login_entrance' %}">Войти в свой профиль</a></button></th>
+</center>
+
+{% endif %}
+
+
+
+{% endblock MAIN_CONTENT %}

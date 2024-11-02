@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+
+{% block MAIN_CONTENT %}
+<br>
+<br>
+<button class="btn btn-outline-info" type="button"><a href="{% url 'user:job-create' %}">Добавить</a></button> 
+<br>
+<br>
+<h5>Должности пользователей:</h5>
+<br>
+<br>
+<table class="table table-striped">
+        {% for job in jobs %}
+        <tr>
+            <th>{{ job.name }}</th>
+            <th>
+<button class="btn btn-outline-info" type="button"><a href="{% url 'user:job-update' job.id %}">Изменить</a></button>
+<button class="btn btn-outline-danger" type="submit"><a href="{% url 'user:job-delete' job.id %}">Удалить</a></button>
+</th>
+            
+        </tr>
+        {% endfor %}
+    </table>
+
+   
+    
+{% endblock MAIN_CONTENT %}  
+
+
+

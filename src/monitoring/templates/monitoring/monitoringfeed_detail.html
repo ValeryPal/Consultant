@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block MAIN_CONTENT %}
+<center>
+<h2><font color='blue'>Организация: {{ object.organization }}</font></h2>
+<br>
+
+<h3>Отчет и рекомендации по результатам мониторинга кормосмеси специалистами</h3>
+<h3><font color='orange'> Научно-исследовательского предприятия "Алникор" </font> </font></center></h3>
+</center>
+
+    <div>
+        <strong>Дата мониторинга:</strong> {{ object.date }}<br>
+
+        <strong>Фото верхнего сита 19 мм:</strong><br><img src="{{ object.foto_1.url }}" class="img-thumbnail" alt=""><br>
+        <strong>Фото среднего сита 8 мм:</strong><br><img src="{{ object.foto_2.url }}" class="img-thumbnail" alt=""><br>
+        <strong>Фото нижнего сита 4 мм:</strong><br><img src="{{ object.foto_3.url }}" class="img-thumbnail" alt=""><br>
+        <strong>Фото поддона:</strong><br><img src="{{ object.foto_4.url }}" class="img-thumbnail" alt=""><br>
+        <strong>Замечания по кормосмеси:</strong><br> {{ object.feed_mixture }}<br><br>
+        <br>
+        <strong></strong> {{ object.job }}_____________________________________{{ object.user_name }}<br>
+        
+        <small><font color='blue'><strong>Добавлено:</strong> {{ object.created_at }}</font></small>
+        <hr>  
+    </div>
+
+
+
+{% endblock MAIN_CONTENT %}

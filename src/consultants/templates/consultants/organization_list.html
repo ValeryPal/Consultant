@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block MAIN_CONTENT %}
+<br>
+<button class="btn btn-outline-info" type="button"><a href="{% url 'consultants:organization-create' %}">Создать новую организацию</a></button>
+
+<br>
+
+<h1>Список организаций</h1>
+<br>
+<table class="table table-striped">
+    {% for organization in object_list %}
+    <tr>
+        <th><a href="{% url 'consultants:organization-detail' organization.id %}">{{ organization.name }}</a></th>
+        <th>{{ organization.manager }}</th>
+        <th>{{ organization.consultant }}</th>
+       
+        
+    </tr>
+    {% endfor %}
+</table>
+
+
+{% endblock MAIN_CONTENT %}

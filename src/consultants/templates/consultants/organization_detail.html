@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+
+{% block MAIN_CONTENT %}
+<h1>Организация: {{object.name}}</h1>
+<h3>Подразделение: {{object.farm}}</h3>
+<h4>Менеджер: {{object.manager}}</h4>
+<h4>Консульант: {{object.consultant}}</h4>
+
+
+<table class="table table-striped">
+
+{% if object.monitoringfeeds.all %}
+<br>
+<tr>
+    <th>Мониторинги кормосмеси:</th>
+</tr>
+<tr>
+    <th><button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring:monitoringfeeds-create' %}">Создать</a></button></th>        
+</tr>
+<tr>
+    {% for monitoringfeed in object.monitoringfeeds.all %}
+        
+    <th><a href="{% url 'monitoring:monitoringfeeds-detail' monitoringfeed.id  %}">{{ monitoringfeed.date }}</a> - {{ monitoringfeed.job }} - {{ monitoringfeed.user_name }}</th>
+       <br> 
+</tr>    
+
+    {% endfor %}
+{% else %}
+<h3>Нет мониторинга в хозяйстве</h3>
+
+{% endif %}
+</table>
+                
+{% endblock MAIN_CONTENT %}
