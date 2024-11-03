@@ -5,6 +5,7 @@ from consultants.models import Organization
 from user_app.models import Job
 from django.contrib.auth import get_user_model # вместо user
 
+
 User = get_user_model()
 
 # Приложение 1 (мониторинг кормосмеси)
@@ -12,7 +13,7 @@ class MonitoringFeed(models.Model):
     organization = models.ForeignKey(Organization, on_delete=models.PROTECT, verbose_name='Организация', related_name='monitoringfeeds',)
     date = models.DateField(verbose_name='Дата мониторинга', default=timezone.now, null=True)   
     
-    foto_1 = models.ImageField(verbose_name='Фото верхнего сита 19 мм', upload_to='foto_monitoring/%Y/%m/%d',)      # фото верхнего сита 19 мм
+    foto_1 = models.ImageField(verbose_name='Фото верхнего сита 19 мм', upload_to='foto_monitoring/%Y/%m/%d', )      # фото верхнего сита 19 мм
     foto_2 = models.ImageField(verbose_name='Фото среднего сита 8 мм', upload_to='foto_monitoring/%Y/%m/%d', )     # фото среднего сита 8 мм
     foto_3 = models.ImageField(verbose_name='Фото нижнего сита 4 мм', upload_to='foto_monitoring/%Y/%m/%d', )      # фото нижнего сита 4 мм
     foto_4 = models.ImageField(verbose_name='Фото поддона', upload_to='foto_monitoring/%Y/%m/%d',)      # фото поддона

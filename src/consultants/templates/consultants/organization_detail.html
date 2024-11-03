@@ -2,32 +2,40 @@
 
 
 {% block MAIN_CONTENT %}
-<h1>Организация: {{object.name}}</h1>
-<h3>Подразделение: {{object.farm}}</h3>
-<h4>Менеджер: {{object.manager}}</h4>
-<h4>Консульант: {{object.consultant}}</h4>
+<h1>Организация: {{organization.name}}</h1>
+<h3>Подразделение: {{organization.farm}}</h3>
+<h4>Менеджер: {{organization.manager}}</h4>
+<h4>Консульант: {{organization.consultant}}</h4>
 
-
-<table class="table table-striped">
-
-{% if object.monitoringfeeds.all %}
 <br>
+<table class="table table-striped">
 <tr>
-    <th>Мониторинги кормосмеси:</th>
+    <th>Мониторинги "кормов":</th>
+    <th>Мониторинги "ph мочи":</th>
+    <th>Мониторинги "кетонов":</th>
+    <th>Мониторинги "переваримости":</th>
+    
 </tr>
 <tr>
-    <th><button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring:monitoringfeeds-create' %}">Создать</a></button></th>        
+    <th><button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring:monitoringfeeds-create' %}">Создать</a></button></th>
+    <th><button class="btn btn-outline-info" type="button"><a href="">Создать</a></button></th>
+    <th><button class="btn btn-outline-info" type="button"><a href="">Создать</a></button></th>
+    <th><button class="btn btn-outline-info" type="button"><a href="">Создать</a></button></th>      
 </tr>
+
 <tr>
-    {% for monitoringfeed in object.monitoringfeeds.all %}
-        
-    <th><a href="{% url 'monitoring:monitoringfeeds-detail' monitoringfeed.id  %}">{{ monitoringfeed.date }}</a> - {{ monitoringfeed.job }} - {{ monitoringfeed.user_name }}</th>
-       <br> 
+    {% if organization.monitoringfeeds.all %}
+
+    {% for monitoringfeed in organization.monitoringfeeds.all %}
+    <th><a href="{% url 'monitoring:monitoringfeeds-detail' monitoringfeed.id  %}">{{ monitoringfeed.date }}</a>
+    <button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring:monitoringfeeds-update' monitoringfeed.id %}">Изменить</a></button>
+    </th>
 </tr>    
 
+    
     {% endfor %}
 {% else %}
-<h3>Нет мониторинга в хозяйстве</h3>
+
 
 {% endif %}
 </table>

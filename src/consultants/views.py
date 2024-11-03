@@ -3,7 +3,7 @@ from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Organization, Consultant
 from .forms import OrganizationForm
-
+from django.shortcuts import render, redirect
 
 class OrganizationListView(LoginRequiredMixin, generic.ListView):
     """Список организаций, доступных текущему консультанту."""
@@ -32,10 +32,19 @@ class OrganizationDetailView(LoginRequiredMixin, generic.DetailView):
     model = Organization
     template_name = 'consultants/organization_detail.html'
 
+    def get(self, request, pk):
+        organization = Organization.objects.get(pk=pk)
+        # Сохраняем ID организации в сессию
+        request.session['last_organization_id'] = organization.id
+        return render(request, 'consultants/organization_detail.html', {'organization': organization})
+
     def get_queryset(self):
         # Ограничиваем queryset, чтобы только наш консультант мог видеть детали своей организации
         consultant = self.request.user.consultant
         return Organization.objects.filter(consultant=consultant)
+
+    
+    
 
 class OrganizationUpdateView(LoginRequiredMixin, generic.UpdateView):
     """Обновление существующей организации."""

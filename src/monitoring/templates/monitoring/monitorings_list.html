@@ -2,9 +2,7 @@
 
 
 {% block MAIN_CONTENT %}
-<br><center>
-<button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring:monitoringfeeds-create' %}">Создать мониторинг кормосмеси</a></button>
-</center><br>
+<br>
 <h5>Все мониторинги кормосмеси в хозяйствах:</h5>
 <br>   
     <table class="table table-striped">
@@ -13,8 +11,7 @@
             <th>Дата</th>
             <th>Должность</th>
             <th>ФИО</th>
-            <th>Подробности</th>
-            <th>Редактор</th> 
+            <th>Подробности</th> 
             
         </tr>
         {% for obj in page_obj %}
@@ -26,9 +23,7 @@
             <th>
 <button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring:monitoringfeeds-detail' obj.id %}">Просмотр</a></button>
             </th>
-            <th>
-<button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring:monitoringfeeds-update' obj.id %}">Изменить</a></button>
-            </th>
+            
             
         {% endfor %}
 
