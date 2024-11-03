@@ -29,7 +29,7 @@ DEBUG = local_settings.DEBUG
 # ALLOWED_HOSTS = ['valerypalchekh.pythonanywhere.com']
 
 ALLOWED_HOSTS = ['127.0.0.1',
-                 'valerypalchekh.pythonanywhere.com',
+                 'ValeryAlnikor.pythonanywhere.com',
                  ]
 
 
@@ -147,9 +147,9 @@ STATIC_ROOT = BASE_DIR.parent / 'static'
 
 # для хостинга(продакшн)####################################################################### !!!!!
 
-# STATIC_ROOT = '/home/ValeryPalchekh/static'
+STATIC_ROOT = '/home/ValeryAlnikor/static'
 
-# MEDIA_ROOT = '/home/ValeryPalchekh/media'
+MEDIA_ROOT = '/home/ValeryAlnikor/media'
 
 
 # Default primary key field type
