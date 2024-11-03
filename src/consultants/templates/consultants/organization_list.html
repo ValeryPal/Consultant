@@ -10,14 +10,18 @@
 <h1>Список организаций</h1>
 <br>
 <table class="table table-striped">
+    <tr>
+        <th>Название</a></th>
+        <th>Подразделение</th>
+        <th>Менеджер</th>
+        <th>Консультант</th>
+    </tr>
     {% for organization in object_list %}
     <tr>
         <th><a href="{% url 'consultants:organization-detail' organization.id %}">{{ organization.name }}</a></th>
         <th>{{ organization.farm }}</th>
         <th>{{ organization.manager }}</th>
         <th>{{ organization.consultant }}</th>
-       
-        
     </tr>
     {% endfor %}
 </table>

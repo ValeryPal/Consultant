@@ -5,26 +5,84 @@
 <center>
 <h2><font color='blue'>Организация: {{ object.organization }}</font></h2>
 <br>
-
-<h3>Отчет и рекомендации по результатам мониторинга кормосмеси специалистами</h3>
+<h3>Отчет и рекомендации по результатам мониторинга специалистами</h3>
 <h3><font color='orange'> Научно-исследовательского предприятия "Алникор" </font> </font></center></h3>
 </center>
-
+<br>
+<strong>Дата мониторинга:</strong> {{ object.date }}<br>
     <div>
-        <strong>Дата мониторинга:</strong> {{ object.date }}<br>
+        <strong>Для анализа качества смешивания и контроля наличия физичечески-эффективной клетчатки проводился отбор готовой
+            кормосмеси в группе: {{ object.group }}. Результаты этого анализа предоставлены ниже.
+        </strong><br><br>
+        <h4><center>Пенсильванское сито:</center></h4><br>
+    <table class="table table-striped">
+        <tr>
+            <th>№ п/п</th>
+            <th>Сито</th>
+            <th><center>Диаметр, мм</center></th>
+            <th><center>Количество остатков, гр.</center></th>
+            <th><center>% остатков на сите</center></th>
+            <th><center>Норма PSPS 2013</center></th>      
+        </tr>   
+        <tr>
+            <th>1</th>
+            <th>верхнее</th>
+            <th><center>30</center></th>
+            <th><center>{{object.feed_1}}</center></th>
+            <th><center>{{object.percent_feed_1}}</center></th>
+            <th><center>2-8</center></th>
+            <th>
+        </th>
+        <tr>
+            <th>2</th>
+            <th>среднее</th>
+            <th><center>8</center></th>
+            <th><center>{{object.feed_2}}</center></th>
+            <th><center>{{object.percent_feed_2}}</center></th>
+            <th><center>30-50</center></th>
+            <th>
+        </th>
+        <tr>
+            <th>3</th>
+            <th>нижнее</th>
+            <th><center>4</center></th>
+            <th><center>{{object.feed_3}}</center></th>
+            <th><center>{{object.percent_feed_3}}</center></th>
+            <th><center>10-20</center></th>
+            <th>
+        </th>
+        <tr>
+            <th>4</th>
+            <th>поддон</th>
+            <th><center>-</center></th>
+            <th><center>{{object.feed_4}}</center></th>
+            <th><center>{{object.percent_feed_4}}</center></th>
+            <th><center>30-40</center></th>
+            <th>
+        </th>
+        <tr>
+            <th>Итого:</th>
+            <th></th>
+            <th></th>
+            <th><center>{{object.summa}}</center></th>
+            <th><center>100</center></th>
+            <th><center>-</center></th>
+            <th>
+        </th>
+    </table>
 
-        <strong>Фото верхнего сита 19 мм:</strong><br><img src="{{ object.foto_1.url }}" class="img-thumbnail" alt=""><br>
-        <strong>Фото среднего сита 8 мм:</strong><br><img src="{{ object.foto_2.url }}" class="img-thumbnail" alt=""><br>
-        <strong>Фото нижнего сита 4 мм:</strong><br><img src="{{ object.foto_3.url }}" class="img-thumbnail" alt=""><br>
-        <strong>Фото поддона:</strong><br><img src="{{ object.foto_4.url }}" class="img-thumbnail" alt=""><br>
-        <strong>Замечания по кормосмеси:</strong><br> {{ object.feed_mixture }}<br><br>
+        <strong>Вид(фото) верхнего сита 19 мм:</strong><br><br><img src="{{ object.foto_1.url }}" class="img-thumbnail" alt=""><br><br>
+        <strong>Вид(фото) среднего сита 8 мм:</strong><br><br><img src="{{ object.foto_2.url }}" class="img-thumbnail" alt=""><br><br>
+        <strong>Вид(фото) нижнего сита 4 мм:</strong><br><br><img src="{{ object.foto_3.url }}" class="img-thumbnail" alt=""><br><br>
+        <strong>Вид(фото) поддона:</strong><br><br><img src="{{ object.foto_4.url }}" class="img-thumbnail" alt=""><br><br>
+        <strong>Замечания по кормосмеси:</strong><br><br> {{ object.feed_mixture }}<br><br>
+        <strong>Рекомендации:</strong><br><br> {{ object.recommendations }}<br><br>
         <br>
         <strong></strong> {{ object.job }}_____________________________________{{ object.user_name }}<br>
         
-        <small><font color='blue'><strong>Добавлено:</strong> {{ object.created_at }}</font></small>
         <hr>  
     </div>
-
-
+    <small><font color='blue'><strong>Добавлено:</strong> {{ object.created_at }}</font></small>
+    <button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring:monitoringfeeds-update' monitoringfeed.id %}">Изменить отчет</a></button>
 
 {% endblock MAIN_CONTENT %}

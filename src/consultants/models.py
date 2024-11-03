@@ -19,6 +19,6 @@ class Organization(models.Model):
 
 
     def __str__(self):
-        return f'{self.name}-{self.farm}-консультант: {self.consultant}'
+        return f'{self.name}  -  {self.farm}'
     
     

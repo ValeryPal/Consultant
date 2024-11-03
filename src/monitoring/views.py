@@ -56,9 +56,9 @@ class MonitoringFeedUpdate(generic.UpdateView):  #LoginRequiredMixin, Permission
     #permission_required = 'book_shop_app.change_author'
     #login_url = reverse_lazy('user:login')
     model = models.MonitoringFeed
-    fields = [
+    fields = ['group', 'feed_1', 'feed_2', 'feed_3', 'feed_4',
               'foto_1', 'foto_2', 'foto_3', 'foto_4',
-              'feed_mixture', 'job', 'user_name']
+              'feed_mixture', 'recommendations', 'job', 'user_name']
 
 
     def get_context_data(self, **kwargs):
