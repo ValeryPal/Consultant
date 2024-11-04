@@ -6,6 +6,12 @@ from user_app.models import Job
 from django.contrib.auth import get_user_model # вместо user
 from django.db.models import Sum
 from django.core.exceptions import ValidationError
+from django.core.files.storage import FileSystemStorage
+from PIL import Image as PILImage
+import os
+from io import BytesIO
+from django.core.files.base import ContentFile
+
 
 User = get_user_model()
 
@@ -63,13 +69,35 @@ class MonitoringFeed(models.Model):
             self.percent_feed_3 = 0.0
             self.percent_feed_4 = 0.0
 
+    def save(self, *args, **kwargs):
+        """Сохранение измененного фото"""
+        if self.foto_1:
+            self.foto_1 = compress_image(self.foto_1)
+        if self.foto_2:
+            self.foto_2 = compress_image(self.foto_2)
+        if self.foto_3:
+            self.foto_3 = compress_image(self.foto_3)
+        if self.foto_4:
+            self.foto_4 = compress_image(self.foto_4)
+        super(MonitoringFeed, self).save(*args, **kwargs)
+
+
     def __str__(self):
         return f' {self.organization} (summa={self.summa}, percents=({self.percent_feed_1}, {self.percent_feed_2}, {self.percent_feed_3}, {self.percent_feed_4}))'
 
     def get_absolute_url(self):
        return reverse_lazy('monitoring:monitoringfeeds-detail', kwargs={"pk": self.pk})  
 
+def compress_image(image, max_width=400, max_height=400):
+    """Изменение фото по размеру и качеству"""
+    img = PILImage.open(image)
+    img.thumbnail((max_width, max_height), PILImage.Resampling.LANCZOS)
 
+    img_io = BytesIO()
+    img.save(img_io, format='JPEG', quality=65)
+    new_image = ContentFile(img_io.getvalue(), name=image.name)
+    
+    return new_image
 
 
 
