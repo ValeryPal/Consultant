@@ -47,10 +47,10 @@ class MonitoringFeed(models.Model):
     job = models.ForeignKey(Job, on_delete=models.PROTECT, verbose_name='Должность специалиста', null=True )
     user_name = models.CharField(verbose_name='ФИО', max_length=100, null=True)
 
-    def save(self, *args, **kwargs):
-        self.calculate_sum()
-        self.calculate_percentages()
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     self.calculate_sum()
+    #     self.calculate_percentages()
+    #     super().save(*args, **kwargs)
 
     def calculate_sum(self):
         """Вычисление суммы feed и сохранение в поле summa."""
@@ -71,6 +71,8 @@ class MonitoringFeed(models.Model):
 
     def save(self, *args, **kwargs):
         """Сохранение измененного фото"""
+        self.calculate_sum()
+        self.calculate_percentages()
         if self.foto_1:
             self.foto_1 = compress_image(self.foto_1)
         if self.foto_2:
