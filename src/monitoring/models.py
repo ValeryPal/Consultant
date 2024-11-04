@@ -37,7 +37,7 @@ class MonitoringFeed(models.Model):
     percent_feed_3 = models.FloatField(default=0.0, validators=[validate_percentage], editable=False)
     percent_feed_4 = models.FloatField(default=0.0, validators=[validate_percentage], editable=False)
     ###
-    foto_1 = models.ImageField(verbose_name='Вид(фото) верхнего сита 30 мм', upload_to='foto_monitoring/%Y/%m/%d', )      # фото верхнего сита 19 мм
+    foto_1 = models.ImageField(verbose_name='Вид(фото) верхнего сита 19 мм', upload_to='foto_monitoring/%Y/%m/%d', )      # фото верхнего сита 19 мм
     foto_2 = models.ImageField(verbose_name='Вид(фото) среднего сита 8 мм', upload_to='foto_monitoring/%Y/%m/%d', )     # фото среднего сита 8 мм
     foto_3 = models.ImageField(verbose_name='Вид(фото)нижнего сита 4 мм', upload_to='foto_monitoring/%Y/%m/%d', )      # фото нижнего сита 4 мм
     foto_4 = models.ImageField(verbose_name='Вид(фото) поддона', upload_to='foto_monitoring/%Y/%m/%d',)      # фото поддона
@@ -46,11 +46,6 @@ class MonitoringFeed(models.Model):
     created_at = models.DateTimeField(verbose_name='Дата создания записи', default=timezone.now,)
     job = models.ForeignKey(Job, on_delete=models.PROTECT, verbose_name='Должность специалиста', null=True )
     user_name = models.CharField(verbose_name='ФИО', max_length=100, null=True)
-
-    # def save(self, *args, **kwargs):
-    #     self.calculate_sum()
-    #     self.calculate_percentages()
-    #     super().save(*args, **kwargs)
 
     def calculate_sum(self):
         """Вычисление суммы feed и сохранение в поле summa."""

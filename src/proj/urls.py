@@ -10,10 +10,6 @@ urlpatterns = [
     path('user/', include('user_app.urls', namespace='user')),
     path('consultants/', include('consultants.urls', namespace='consultants')),
     path('monitoring/', include('monitoring.urls', namespace='monitoring')),
-    # path('depatments/', include('depatments.urls', namespace='depatments')),
-    # path('audits/', include('audits.urls', namespace='audits')),
-    
-    #          
 ]
 
 # не для хостинга

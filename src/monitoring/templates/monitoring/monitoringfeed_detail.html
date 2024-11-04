@@ -14,7 +14,7 @@
         <strong>Для анализа качества смешивания и контроля наличия физичечески-эффективной клетчатки проводился отбор готовой
             кормосмеси в группе: {{ object.group }}. Результаты этого анализа предоставлены ниже.
         </strong><br><br>
-        <h4><center>Пенсильванское сито:</center></h4><br>
+        <h4><center>Пенсильванское сито PSPS4:</center></h4><br>
     <table class="table table-striped">
         <tr>
             <th>№ п/п</th>
@@ -27,7 +27,7 @@
         <tr>
             <th>1</th>
             <th>верхнее</th>
-            <th><center>30</center></th>
+            <th><center>19</center></th>
             <th><center>{{object.feed_1}}</center></th>
             <th><center>{{object.percent_feed_1}}</center></th>
             <th><center>2-8</center></th>
@@ -70,11 +70,31 @@
             <th>
         </th>
     </table>
+    <br>
+    <table>
+        <tr>
+            <th>Вид(фото) верхнего сита 19 мм:</th>
+            <th><pre>   </pre></th>
+            <th>Вид(фото) среднего сита 8 мм:</th>
+        </tr>
+        <tr>
+            <th><img src="{{ object.foto_1.url }}" class="img-thumbnail" alt=""></th>
+            <th><pre>   </pre></th>
+            <th><img src="{{ object.foto_2.url }}" class="img-thumbnail" alt=""></th>
+        </tr>
+        <tr>
+            <th>Вид(фото) нижнего сита 4 мм:</th>
+            <th><pre>   </pre></th>
+            <th>Вид(фото) поддона:</th>
+        </tr>
+        <tr>
+            <th><img src="{{ object.foto_3.url }}" class="img-thumbnail" alt=""></th>
+            <th><pre>   </pre></th>
+            <th><img src="{{ object.foto_4.url }}" class="img-thumbnail" alt=""></th>
+        </tr>
+        
+    </table>
 
-        <strong>Вид(фото) верхнего сита 19 мм:</strong><br><br><img src="{{ object.foto_1.url }}" class="img-thumbnail" alt=""><br><br>
-        <strong>Вид(фото) среднего сита 8 мм:</strong><br><br><img src="{{ object.foto_2.url }}" class="img-thumbnail" alt=""><br><br>
-        <strong>Вид(фото) нижнего сита 4 мм:</strong><br><br><img src="{{ object.foto_3.url }}" class="img-thumbnail" alt=""><br><br>
-        <strong>Вид(фото) поддона:</strong><br><br><img src="{{ object.foto_4.url }}" class="img-thumbnail" alt=""><br><br>
         <strong>Замечания по кормосмеси:</strong><br><br> {{ object.feed_mixture }}<br><br>
         <strong>Рекомендации:</strong><br><br> {{ object.recommendations }}<br><br>
         <br>
