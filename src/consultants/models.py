@@ -14,8 +14,8 @@ class Consultant(models.Model):
 class Organization(models.Model):
     name = models.CharField(max_length=255, verbose_name='Название',)
     farm = models.CharField(max_length=200, verbose_name='Ферма(комплекс)',)
-    manager = models.ForeignKey(User, on_delete=models.CASCADE, related_name='managed_organizations',)
-    consultant = models.ForeignKey(Consultant, verbose_name='Консультант', on_delete=models.CASCADE, related_name='organizations')
+    manager = models.ForeignKey(User, on_delete=models.PROTECT, related_name='managed_organizations',)
+    consultant = models.ForeignKey(Consultant, verbose_name='Консультант', on_delete=models.PROTECT, related_name='organizations')
 
 
     def __str__(self):
