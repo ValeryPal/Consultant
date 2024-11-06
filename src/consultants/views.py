@@ -4,6 +4,17 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Organization, Consultant
 from .forms import OrganizationForm
 from django.shortcuts import render, redirect
+from . import models
+
+
+def search(request):
+    query = request.GET.get('q')
+    organization = models.Organization.objects
+    organizations = []
+    if query:
+        organizations = Organization.objects.filter(name__icontains=query)  # Поиск по названию
+    return render(request, 'consultants/search_results.html', {'organizations': organizations, 'query': organization})
+
 
 class OrganizationListView(LoginRequiredMixin, generic.ListView):
     """Список организаций, доступных текущему консультанту."""

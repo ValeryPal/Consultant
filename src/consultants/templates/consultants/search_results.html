@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+
+{% block MAIN_CONTENT %}
+<br>
+<br>
+<h3>Поиск организации:</h3>
+<br>
+<br>
+    <form class="d-flex" role="search">     
+        <input class="form-control me-2" type="text" name="q" placeholder="Введите название организации">
+        <button type="submit" class="btn btn-outline-danger">Поиск</button>
+    </form>
+    <br>
+    <br>
+        <ul>
+            {% for organization in organizations %} 
+                {% if organization %}
+                найдена:
+                <li>
+                    <h3><button type="button" class="btn btn-outline-info">
+                        <a href="{% url 'consultants:organization-detail' organization.pk %}">"{{ organization.name }} - {{ organization.farm }}"</a></button></h3>                    
+                </li>
+                {% endif %}
+            {% endfor %}           
+        </ul>
+     
+{% endblock MAIN_CONTENT %}
+
