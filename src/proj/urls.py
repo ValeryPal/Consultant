@@ -11,6 +11,7 @@ urlpatterns = [
     path('consultants/', include('consultants.urls', namespace='consultants')),
     path('monitoring/', include('monitoring.urls', namespace='monitoring')),
     path('monitoring_ph/', include('monitoring_ph.urls', namespace='monitoring_ph')),
+    path('monitoring_ket/', include('monitoring_ket.urls', namespace='monitoring_ket')),
 ]
 
 # не для хостинга

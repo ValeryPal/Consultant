@@ -63,10 +63,9 @@ class OrganizationDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Organization
     template_name = 'consultants/organization_confirm_delete.html'
     success_url = reverse_lazy('consultants:organization-list')
-
+    
     def get_queryset(self):
         # Ограничиваем queryset для удаления только для организаций текущего консультанта
         consultant = self.request.user.consultant
         return Organization.objects.filter(consultant=consultant)
-
 

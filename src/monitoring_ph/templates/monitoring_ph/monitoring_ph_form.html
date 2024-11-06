@@ -4,8 +4,8 @@
 {% block MAIN_CONTENT %}
 
 {% if user.is_authenticated %}
-<br>
-    <h1>{{ page_title }}</h1>
+<br><h1>Мониторинг "ph мочи":</h1>
+    <h3>{{ page_title }}</h3>
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form|crispy }} 

@@ -65,6 +65,6 @@ class Monitoring_phUpdate(generic.UpdateView):  #LoginRequiredMixin, PermissionR
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['page_title'] = "Изменение мониторинга ph мочи:"
+        context['page_title'] = "(изменение)"
         return context
 

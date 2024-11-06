@@ -6,15 +6,15 @@ from . models import Organization
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.core.paginator import Paginator
-from .forms import MonitoringForm
+from .forms import Monitoring_ketForm
 from PIL import Image
 import os
 
 
-class MonitoringFeedList(generic.ListView): # PermissionRequiredMixin, 
-    model = models.MonitoringFeed
-    template_name = 'monitoring/monitorings_list.html'
-    context_object_name = 'monitorings'
+class Monitoring_ketList(generic.ListView): # PermissionRequiredMixin, 
+    model = models.Monitoring_ket
+    template_name = 'monitoring_ket/monitoring_ket_list.html'
+    context_object_name = 'monitoring_ket'
     paginate_by = 20
     
     def get_queryset(self):
@@ -23,21 +23,21 @@ class MonitoringFeedList(generic.ListView): # PermissionRequiredMixin,
         return queryset.order_by(ordering) 
 
 
-class MonitoringFeedDetail(generic.DetailView):
-    model = models.MonitoringFeed
+class Monitoring_ketDetail(generic.DetailView):
+    model = models.Monitoring_ket
 
 
-class MonitoringFeedCreate(generic.CreateView): #LoginRequiredMixin, PermissionRequiredMixin, 
+class Monitoring_ketCreate(generic.CreateView): #LoginRequiredMixin, PermissionRequiredMixin, 
     # permission_required = 'book_shop_app.add_author' 
     # login_url = reverse_lazy('user:login')
-    model = models.MonitoringFeed
+    model = models.Monitoring_ket
     
     def get(self, request):
-        form = MonitoringForm()
-        return render(request, 'monitoring/monitoringfeed_form.html', {'form': form})
+        form = Monitoring_ketForm()
+        return render(request, 'monitoring_ket/monitoring_ket_form.html', {'form': form})
 
     def post(self, request):
-        form = MonitoringForm(request.POST, request.FILES)
+        form = Monitoring_ketForm(request.POST, request.FILES)
         if form.is_valid():
             # Получаем последнюю просмотренную организацию из сессии
             last_organization_id = request.session.get('last_organization_id')
@@ -46,22 +46,28 @@ class MonitoringFeedCreate(generic.CreateView): #LoginRequiredMixin, PermissionR
                 form.instance.organization = Organization.objects.get(id=last_organization_id)
    
             # Сохраняем объект мониторинга
-            monitoringfeed = form.save()
+            monitoring_ket = form.save()
             return redirect('consultants:organization-list')  # Перенаправляем на список мониторингов
-        return render(request, 'monitoring/monitoringfeed_form.html', {'form': form})   
+        return render(request, 'monitoring_ket/monitoring_ket_form.html', {'form': form})   
 
 
 
-class MonitoringFeedUpdate(generic.UpdateView):  #LoginRequiredMixin, PermissionRequiredMixin, 
+class Monitoring_ketUpdate(generic.UpdateView):  #LoginRequiredMixin, PermissionRequiredMixin, 
     #permission_required = 'book_shop_app.change_author'
     #login_url = reverse_lazy('user:login')
-    model = models.MonitoringFeed
-    fields = ['group', 'feed_1', 'feed_2', 'feed_3', 'feed_4',
-              'foto_1', 'foto_2', 'foto_3', 'foto_4',
-              'feed_mixture', 'recommendations', 'job', 'user_name']
+    model = models.Monitoring_ket
+    fields = ['date', 'group', 'animal_1', 'animal_2', 'animal_3', 'animal_4',
+              'animal_5', 'animal_6', 'animal_7', 'animal_8', 'animal_9', 'animal_10',
+              'animal_11', 'animal_12', 'animal_13', 'animal_14', 'animal_15',
+              'keton_1', 'keton_2', 'keton_3', 'keton_4',
+              'keton_5', 'keton_6', 'keton_7', 'keton_8', 'keton_9', 'keton_10',
+              'keton_11', 'keton_12', 'keton_13', 'keton_14', 'keton_15',
+              'recommendations', 'job', 'user_name']
 
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['page_title'] = "(изменение)"
         return context
+
+

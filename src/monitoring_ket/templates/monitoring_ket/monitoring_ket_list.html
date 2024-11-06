@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+
+{% block MAIN_CONTENT %}
+<br>
+<h5>Все мониторинги "кетоновых тел" в хозяйствах:</h5>
+<br>   
+    <table class="table table-striped">
+        <tr>
+            <th>Организация</th>
+            <th>Дата</th>
+            <th>Должность</th>
+            <th>ФИО</th>
+            <th>Подробности</th> 
+            
+        </tr>
+        {% for obj in page_obj %}
+        <tr>
+            <th>{{ obj.organization }}</th>
+            <th>{{ obj.date }}</th>
+            <th>{{ obj.job }}</th>
+            <th>{{ obj.user_name }}</th>
+            <th>
+<button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring_ket:monitoring-ket-detail' obj.id %}">Просмотр</a></button>
+            </th>
+            
+            
+        {% endfor %}
+
+    </table>
+
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; первый</a>
+                <a href="?page={{ page_obj.previous_page_number }}">предыдущий</a>
+            {% endif %}
+    
+            <span class="current">
+                Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+            </span>
+    
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">следующий</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">последний &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+
+
+{% endblock MAIN_CONTENT %}  
+
+
+
+

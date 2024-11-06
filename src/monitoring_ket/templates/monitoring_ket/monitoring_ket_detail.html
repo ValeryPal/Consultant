@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block MAIN_CONTENT %}
+<center>
+<h2><font color='blue'>Организация: {{ object.organization }}</font></h2>
+<br>
+<h3>Отчет и рекомендации по результатам мониторинга специалистами</h3>
+<h3><font color='orange'> Научно-исследовательского предприятия "Алникор" </font> </font></center></h3>
+</center>
+<br>
+<strong>Дата мониторинга:</strong> {{ object.date }}<br>
+    <div>
+        <strong>Для контроля эффективности противокетозной программы отбиралась кровь у новотельных коров. 
+            Результаты исследования предоставлены ниже.</strong><br><br>
+
+        <h4><center>Кетоновые тела у группы: {{ object.group }}</center></h4><br>
+    <table class="table table-striped">
+        <tr>
+            <th>№ животного</th>
+            <th><center>Кетоновые тела, ммоль/л</center></th>
+            <th><center>Нормальное значение, ммоль/л</center></th>   
+        </tr> 
+        {% if monitoring_ket.animal_1 %}  
+        <tr>
+            <th>{{object.animal_1}}</th>
+            <th><center>{{object.keton_1}}</center></th>
+            <th><center>до 0,6</center></th>
+        </tr>
+        {% else %}
+        {% endif %}
+        {% if monitoring_ket.animal_2 %}
+        <tr>
+            <th>{{object.animal_2}}</th>
+            <th><center>{{object.keton_2}}</center></th>
+            <th><center>до 0,6</center></th>
+        </tr>
+        {% else %}
+        {% endif %}
+        {% if monitoring_ket.animal_3 %}
+        <tr>
+            <th>{{object.animal_3}}</th>
+            <th><center>{{object.keton_3}}</center></th>
+            <th><center>до 0,6</center></th>
+        </tr>
+        {% else %}
+        {% endif %}
+        {% if monitoring_ket.animal_4 %}
+        <tr>
+            <th>{{object.animal_4}}</th>
+            <th><center>{{object.keton_4}}</center></th>
+            <th><center>до 0,6</center></th>
+        </tr>
+        {% else %}
+        {% endif %}
+        {% if monitoring_ket.animal_5 %}
+        <tr>
+            <th>{{object.animal_5}}</th>
+            <th><center>{{object.keton_5}}</center></th>
+            <th><center>до 0,6</center></th>
+        </tr>
+        {% else %}
+        {% endif %}
+        {% if monitoring_ket.animal_6 %}
+        <tr> 
+            <th>{{object.animal_6}}</th>
+            <th><center>{{object.keton_6}}</center></th>
+            <th><center>до 0,6</center></th>
+        </tr>
+        {% else %}
+        {% endif %}
+        {% if monitoring_ket.animal_7 %}
+        <tr>
+            <th>{{object.animal_7}}</th>
+            <th><center>{{object.keton_7}}</center></th>
+            <th><center>до 0,6</center></th>
+        </tr>
+        {% else %}
+        {% endif %}
+        {% if monitoring_ket.animal_8 %}
+        <tr>
+            <th>{{object.animal_8}}</th>
+            <th><center>{{object.keton_8}}</center></th>
+            <th><center>до 0,6</center></th>
+        </tr>
+        {% else %}
+        {% endif %}
+        {% if monitoring_ket.animal_9 %}
+        <tr>
+            <th>{{object.animal_9}}</th>
+            <th><center>{{object.keton_9}}</center></th>
+            <th><center>до 0,6</center></th>
+        </tr>
+        {% else %}
+        {% endif %}
+        {% if monitoring_ket.animal_10 %}
+        <tr>
+            <th>{{object.animal_10}}</th>
+            <th><center>{{object.keton_10}}</center></th>
+            <th><center>до 0,6</center></th>
+        </tr>
+        {% else %}
+        {% endif %}
+        {% if monitoring_ket.animal_11 %}  
+        <tr>
+            <th>{{object.animal_11}}</th>
+            <th><center>{{object.keton_11}}</center></th>
+            <th><center>до 0,6</center></th>
+        </tr>
+        {% else %}
+        {% endif %}
+        {% if monitoring_ket.animal_12 %}
+        <tr>
+            <th>{{object.animal_12}}</th>
+            <th><center>{{object.keton_12}}</center></th>
+            <th><center>до 0,6</center></th>
+        </tr>
+        {% else %}
+        {% endif %}
+        {% if monitoring_ket.animal_13 %}
+        <tr>
+            <th>{{object.animal_13}}</th>
+            <th><center>{{object.keton_13}}</center></th>
+            <th><center>до 0,6</center></th>
+        </tr>
+        {% else %}
+        {% endif %}
+        {% if monitoring_ket.animal_14 %}
+        <tr>
+            <th>{{object.animal_14}}</th>
+            <th><center>{{object.keton_14}}</center></th>
+            <th><center>до 0,6</center></th>
+        </tr>
+        {% else %}
+        {% endif %}
+        {% if monitoring_ket.animal_15 %}
+        <tr>
+            <th>{{object.animal_15}}</th>
+            <th><center>{{object.keton_15}}</center></th>
+            <th><center>до 0,6</center></th>
+        </tr>
+        {% else %}
+        {% endif %}
+    </table>
+    <br>
+    
+        <strong>Рекомендации:</strong><br><br> {{ object.recommendations }}<br><br>
+        <br>
+        <strong></strong> {{ object.job }}_____________________________________{{ object.user_name }}<br>
+        
+        <hr>  
+    </div>
+    <small><font color='blue'><strong>Добавлено:</strong> {{ object.created_at }}</font></small>
+    <button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring_ket:monitoring-ket-update' monitoring_ket.id %}">Изменить отчет</a></button>
+
+{% endblock MAIN_CONTENT %}
