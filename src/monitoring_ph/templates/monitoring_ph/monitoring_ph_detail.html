@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block MAIN_CONTENT %}
+<center>
+<h2><font color='blue'>Организация: {{ object.organization }}</font></h2>
+<br>
+<h3>Отчет и рекомендации по результатам мониторинга специалистами</h3>
+<h3><font color='orange'> Научно-исследовательского предприятия "Алникор" </font> </font></center></h3>
+</center>
+<br>
+<strong>Дата мониторинга:</strong> {{ object.date }}<br>
+    <div>
+        <strong>Для контроля программы профилактики парезов у новотельных коров и эффективности применения кислых солей во втором 
+            периоде сухостоя проводился отбор проб мочи и измерение ее "рh". Результаты этого анализа предоставлены ниже.
+        </strong><br><br>
+
+        <h4><center>"ph мочи" у группы: {{ object.group }}</center></h4><br>
+    <table class="table table-striped">
+        <tr>
+            <th>№ животного</th>
+            <th><center>ph мочи</center></th>
+            <th><center>Норма у голштинской породы</center></th>   
+        </tr> 
+        {% if monitoring_ph.animal_1 %}  
+        <tr>
+            <th>{{object.animal_1}}</th>
+            <th><center>{{object.ph_1}}</center></th>
+            <th><center>6,5-6,8</center></th>
+        </tr>
+        {% else %}
+        {% endif %}
+        {% if monitoring_ph.animal_2 %}
+        <tr>
+            <th>{{object.animal_2}}</th>
+            <th><center>{{object.ph_2}}</center></th>
+            <th><center>6,5-6,8</center></th>
+        </tr>
+        {% else %}
+        {% endif %}
+        {% if monitoring_ph.animal_3 %}
+        <tr>
+            <th>{{object.animal_3}}</th>
+            <th><center>{{object.ph_3}}</center></th>
+            <th><center>6,5-6,8</center></th>
+        </tr>
+        {% else %}
+        {% endif %}
+        {% if monitoring_ph.animal_4 %}
+        <tr>
+            <th>{{object.animal_4}}</th>
+            <th><center>{{object.ph_4}}</center></th>
+            <th><center>6,5-6,8</center></th>
+        </tr>
+        {% else %}
+        {% endif %}
+        {% if monitoring_ph.animal_5 %}
+        <tr>
+            <th>{{object.animal_5}}</th>
+            <th><center>{{object.ph_5}}</center></th>
+            <th><center>6,5-6,8</center></th>
+        </tr>
+        {% else %}
+        {% endif %}
+        {% if monitoring_ph.animal_6 %}
+        <tr> 
+            <th>{{object.animal_6}}</th>
+            <th><center>{{object.ph_6}}</center></th>
+            <th><center>6,5-6,8</center></th>
+        </tr>
+        {% else %}
+        {% endif %}
+        {% if monitoring_ph.animal_7 %}
+        <tr>
+            <th>{{object.animal_7}}</th>
+            <th><center>{{object.ph_7}}</center></th>
+            <th><center>6,5-6,8</center></th>
+        </tr>
+        {% else %}
+        {% endif %}
+        {% if monitoring_ph.animal_8 %}
+        <tr>
+            <th>{{object.animal_8}}</th>
+            <th><center>{{object.ph_8}}</center></th>
+            <th><center>6,5-6,8</center></th>
+        </tr>
+        {% else %}
+        {% endif %}
+        {% if monitoring_ph.animal_9 %}
+        <tr>
+            <th>{{object.animal_9}}</th>
+            <th><center>{{object.ph_9}}</center></th>
+            <th><center>6,5-6,8</center></th>
+        </tr>
+        {% else %}
+        {% endif %}
+        {% if monitoring_ph.animal_10 %}
+        <tr>
+            <th>{{object.animal_10}}</th>
+            <th><center>{{object.ph_10}}</center></th>
+            <th><center>6,5-6,8</center></th>
+        </tr>
+        {% else %}
+        {% endif %}
+        
+    </table>
+    <br>
+    
+        <strong>Рекомендации:</strong><br><br> {{ object.recommendations }}<br><br>
+        <br>
+        <strong></strong> {{ object.job }}_____________________________________{{ object.user_name }}<br>
+        
+        <hr>  
+    </div>
+    <small><font color='blue'><strong>Добавлено:</strong> {{ object.created_at }}</font></small>
+    <button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring_ph:monitoring-ph-update' monitoring_ph.id %}">Изменить отчет</a></button>
+
+{% endblock MAIN_CONTENT %}

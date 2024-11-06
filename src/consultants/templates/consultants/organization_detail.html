@@ -11,33 +11,57 @@
 <table class="table table-striped">
 <tr>
     <th>Мониторинги "кормов":</th>
+    <th>Мониторинги "переваримости":</th>
     <th>Мониторинги "ph мочи":</th>
     <th>Мониторинги "кетонов":</th>
-    <th>Мониторинги "переваримости":</th>
-    
 </tr>
 <tr>
     <th><button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring:monitoringfeeds-create' %}">Создать</a></button></th>
     <th><button class="btn btn-outline-info" type="button"><a href="">Создать</a></button></th>
-    <th><button class="btn btn-outline-info" type="button"><a href="">Создать</a></button></th>
+    <th><button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring_ph:monitoring-ph-create' %}">Создать</a></button></th>
     <th><button class="btn btn-outline-info" type="button"><a href="">Создать</a></button></th>      
 </tr>
 
 <tr>
+    <th>
     {% if organization.monitoringfeeds.all %}
-
-    {% for monitoringfeed in organization.monitoringfeeds.all %}
-    <th><a href="{% url 'monitoring:monitoringfeeds-detail' monitoringfeed.id  %}">{{ monitoringfeed.date }}</a>
-    <!-- <button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring:monitoringfeeds-update' monitoringfeed.id %}">Изменить</a></button> -->
+        {% for monitoringfeed in organization.monitoringfeeds.all %}
+        <a href="{% url 'monitoring:monitoringfeeds-detail' monitoringfeed.id  %}">{{ monitoringfeed.date }}</a><br>
+        {% endfor %}
+    {% else %}
+    Мониторинг отсутствует
+    {% endif %}
     </th>
-</tr>    
 
-    
-    {% endfor %}
-{% else %}
+    <th>
+        {% if organization.monitoring_nasko.all %}
+            {% for monitoring_ph in organization.monitoring_ph.all %}
+            <a href="">{{ monitoring_ph.date }}</a><br>
+            {% endfor %}
+        {% else %}
+        Мониторинг отсутствует
+        {% endif %}
+    </th>
+    <th>
+        {% if organization.monitoring_phs.all %}
+            {% for monitoring_ph in organization.monitoring_phs.all %}
+            <a href="{% url 'monitoring_ph:monitoring-ph-detail' monitoring_ph.id  %}">{{ monitoring_ph.date }}</a><br>
+            {% endfor %}
+        {% else %}
+        Мониторинг отсутствует
+        {% endif %}
+    </th>
+    <th>
+        {% if organization.monitoring_ket.all %}
+            {% for monitoring_ph in organization.monitoring_ket.all %}
+            <a href="">{{ monitoring_ket.date }}</a><br>
+            {% endfor %}
+        {% else %}
+        Мониторинг отсутствует
+        {% endif %}
+    </th>
+</tr>
 
-
-{% endif %}
 </table>
                 
 {% endblock MAIN_CONTENT %}
