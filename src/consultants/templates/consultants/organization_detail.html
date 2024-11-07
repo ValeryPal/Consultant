@@ -20,7 +20,7 @@
 </tr>
 <tr>
     <th><button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring:monitoringfeeds-create' %}">Создать</a></button></th>
-    <th><button class="btn btn-outline-info" type="button"><a href="">Создать</a></button></th>
+    <th><button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring_nasko:monitoring-nasko-create' %}">Создать</a></button></th>
     <th><button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring_ph:monitoring-ph-create' %}">Создать</a></button></th>
     <th><button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring_ket:monitoring-ket-create' %}">Создать</a></button></th>      
 </tr>
@@ -37,9 +37,9 @@
     </th>
 
     <th>
-        {% if organization.monitoring_nasko.all %}
-            {% for monitoring_ph in organization.monitoring_ph.all %}
-            <a href="">{{ monitoring_ph.date }}</a><br>
+        {% if organization.monitoring_naskos.all %}
+            {% for monitoring_nasko in organization.monitoring_naskos.all %}
+            <a href="{% url 'monitoring_nasko:monitoring-nasko-detail' monitoring_nasko.id  %}">{{ monitoring_nasko.date }}</a><br>
             {% endfor %}
         {% else %}
         отсутствует
