@@ -11,7 +11,9 @@ from PIL import Image
 import os
 
 
-class MonitoringFeedList(generic.ListView): # PermissionRequiredMixin, 
+class MonitoringFeedList(LoginRequiredMixin, PermissionRequiredMixin, generic.ListView):
+    permission_required = 'monitoring.view_monitoringfeed' 
+    login_url = reverse_lazy('user:login') 
     model = models.MonitoringFeed
     template_name = 'monitoring/monitorings_list.html'
     context_object_name = 'monitorings'
@@ -23,13 +25,15 @@ class MonitoringFeedList(generic.ListView): # PermissionRequiredMixin,
         return queryset.order_by(ordering) 
 
 
-class MonitoringFeedDetail(generic.DetailView):
+class MonitoringFeedDetail(LoginRequiredMixin, PermissionRequiredMixin, generic.DetailView):
+    permission_required = 'monitoring.view_monitoringfeed' 
+    login_url = reverse_lazy('user:login') 
     model = models.MonitoringFeed
 
 
-class MonitoringFeedCreate(generic.CreateView): #LoginRequiredMixin, PermissionRequiredMixin, 
-    # permission_required = 'book_shop_app.add_author' 
-    # login_url = reverse_lazy('user:login')
+class MonitoringFeedCreate(LoginRequiredMixin, PermissionRequiredMixin, generic.CreateView): 
+    permission_required = 'monitoring.add_monitoringfeed' 
+    login_url = reverse_lazy('user:login')
     model = models.MonitoringFeed
     
     def get(self, request):
@@ -52,9 +56,9 @@ class MonitoringFeedCreate(generic.CreateView): #LoginRequiredMixin, PermissionR
 
 
 
-class MonitoringFeedUpdate(generic.UpdateView):  #LoginRequiredMixin, PermissionRequiredMixin, 
-    #permission_required = 'book_shop_app.change_author'
-    #login_url = reverse_lazy('user:login')
+class MonitoringFeedUpdate(LoginRequiredMixin, PermissionRequiredMixin, generic.UpdateView):   
+    permission_required = 'monitoring.change_monitoringfeed'
+    login_url = reverse_lazy('user:login')
     model = models.MonitoringFeed
     fields = ['group', 'feed_1', 'feed_2', 'feed_3', 'feed_4',
               'foto_1', 'foto_2', 'foto_3', 'foto_4',

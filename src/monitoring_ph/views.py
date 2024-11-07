@@ -11,7 +11,9 @@ from PIL import Image
 import os
 
 
-class Monitoring_phList(generic.ListView): # PermissionRequiredMixin, 
+class Monitoring_phList(LoginRequiredMixin, PermissionRequiredMixin, generic.ListView):
+    permission_required = 'monitoring_ph.view_monitoring_ph' 
+    login_url = reverse_lazy('user:login')
     model = models.Monitoring_ph
     template_name = 'monitoring_ph/monitoring_ph_list.html'
     context_object_name = 'monitoring_ph'
@@ -23,13 +25,15 @@ class Monitoring_phList(generic.ListView): # PermissionRequiredMixin,
         return queryset.order_by(ordering) 
 
 
-class Monitoring_phDetail(generic.DetailView):
+class Monitoring_phDetail(LoginRequiredMixin, PermissionRequiredMixin, generic.DetailView):
+    permission_required = 'monitoring_ph.view_monitoring_ph' 
+    login_url = reverse_lazy('user:login')
     model = models.Monitoring_ph
 
 
-class Monitoring_phCreate(generic.CreateView): #LoginRequiredMixin, PermissionRequiredMixin, 
-    # permission_required = 'book_shop_app.add_author' 
-    # login_url = reverse_lazy('user:login')
+class Monitoring_phCreate(LoginRequiredMixin, PermissionRequiredMixin, generic.CreateView):  
+    permission_required = 'monitoring_ph.add_monitoring_ph' 
+    login_url = reverse_lazy('user:login')
     model = models.Monitoring_ph
     
     def get(self, request):
@@ -52,9 +56,9 @@ class Monitoring_phCreate(generic.CreateView): #LoginRequiredMixin, PermissionRe
 
 
 
-class Monitoring_phUpdate(generic.UpdateView):  #LoginRequiredMixin, PermissionRequiredMixin, 
-    #permission_required = 'book_shop_app.change_author'
-    #login_url = reverse_lazy('user:login')
+class Monitoring_phUpdate(LoginRequiredMixin, PermissionRequiredMixin, generic.UpdateView):   
+    permission_required = 'monitoring_ph.change_monitoring_ph' 
+    login_url = reverse_lazy('user:login')
     model = models.Monitoring_ph
     fields = ['date', 'group', 'animal_1', 'animal_2', 'animal_3', 'animal_4',
               'animal_5', 'animal_6', 'animal_7', 'animal_8', 'animal_9', 'animal_10',

@@ -119,7 +119,7 @@ class JobUpdate(LoginRequiredMixin, PermissionRequiredMixin, generic.UpdateView)
 
 
 class JobDelete(LoginRequiredMixin, PermissionRequiredMixin, generic.DeleteView):
-    permission_required = 'user_app.change_job'
+    permission_required = 'user_app.delete_job'
     login_url = reverse_lazy('user:login')
     model = models.Job
     success_url = reverse_lazy('user:job-list')

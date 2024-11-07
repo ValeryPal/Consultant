@@ -2,6 +2,9 @@
 
 
 {% block MAIN_CONTENT %}
+{% load group_tags %}
+{% if user.is_authenticated %}
+    {% if user|has_group:"Consultant" %}
 <br>
 <button class="btn btn-outline-info" type="button"><a href="{% url 'consultants:organization-create' %}">Создать новую организацию</a></button>
 
@@ -25,6 +28,18 @@
     </tr>
     {% endfor %}
 </table>
+{% else %}
+{% endif %}
+{% endif %}
 
+{% if user.is_authenticated %}
+    {% if user|has_group:"Assistant" %}
+<br>
+<br>
+<h2>Благодарим за работу!!!</h2>
+
+{% else %}
+{% endif %}
+{% endif %}
 
 {% endblock MAIN_CONTENT %}

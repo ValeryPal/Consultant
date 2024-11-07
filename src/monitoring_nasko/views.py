@@ -11,7 +11,9 @@ from PIL import Image
 import os
 
 
-class Monitoring_naskoList(generic.ListView): # PermissionRequiredMixin, 
+class Monitoring_naskoList(LoginRequiredMixin, PermissionRequiredMixin, generic.ListView):
+    permission_required = 'monitoring_nasko.view_monitoring_nasko' 
+    login_url = reverse_lazy('user:login')
     model = models.Monitoring_nasko
     template_name = 'monitoring_nasko/monitorings_nasko_list.html'
     context_object_name = 'monitoring_naskos'
@@ -23,13 +25,15 @@ class Monitoring_naskoList(generic.ListView): # PermissionRequiredMixin,
         return queryset.order_by(ordering) 
 
 
-class Monitoring_naskoDetail(generic.DetailView):
+class Monitoring_naskoDetail(LoginRequiredMixin, PermissionRequiredMixin, generic.DetailView):
+    permission_required = 'monitoring_nasko.view_monitoring_nasko' 
+    login_url = reverse_lazy('user:login')
     model = models.Monitoring_nasko
 
 
-class Monitoring_naskoCreate(generic.CreateView): #LoginRequiredMixin, PermissionRequiredMixin, 
-    # permission_required = 'book_shop_app.add_author' 
-    # login_url = reverse_lazy('user:login')
+class Monitoring_naskoCreate(LoginRequiredMixin, PermissionRequiredMixin, generic.CreateView):  
+    permission_required = 'monitoring_nasko.add_monitoring_nasko' 
+    login_url = reverse_lazy('user:login')
     model = models.Monitoring_nasko
     
     def get(self, request):
@@ -52,9 +56,9 @@ class Monitoring_naskoCreate(generic.CreateView): #LoginRequiredMixin, Permissio
 
 
 
-class Monitoring_naskoUpdate(generic.UpdateView):  #LoginRequiredMixin, PermissionRequiredMixin, 
-    #permission_required = 'book_shop_app.change_author'
-    #login_url = reverse_lazy('user:login')
+class Monitoring_naskoUpdate(LoginRequiredMixin, PermissionRequiredMixin, generic.UpdateView):  
+    permission_required = 'monitoring_nasko.change_monitoring_nasko' 
+    login_url = reverse_lazy('user:login')
     model = models.Monitoring_nasko
     fields = ['date', 'group', 'feces_1', 'feces_2', 'feces_3',
               'foto_1', 'foto_2', 'foto_3',

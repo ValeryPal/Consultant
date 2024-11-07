@@ -11,7 +11,9 @@ from PIL import Image
 import os
 
 
-class Monitoring_ketList(generic.ListView): # PermissionRequiredMixin, 
+class Monitoring_ketList(LoginRequiredMixin, PermissionRequiredMixin, generic.ListView): 
+    permission_required = 'monitoring_ket.view_monitoring_ket' 
+    login_url = reverse_lazy('user:login')
     model = models.Monitoring_ket
     template_name = 'monitoring_ket/monitoring_ket_list.html'
     context_object_name = 'monitoring_ket'
@@ -23,13 +25,15 @@ class Monitoring_ketList(generic.ListView): # PermissionRequiredMixin,
         return queryset.order_by(ordering) 
 
 
-class Monitoring_ketDetail(generic.DetailView):
+class Monitoring_ketDetail(LoginRequiredMixin, PermissionRequiredMixin, generic.DetailView):
+    permission_required = 'monitoring_ket.view_monitoring_ket' 
+    login_url = reverse_lazy('user:login')
     model = models.Monitoring_ket
 
 
-class Monitoring_ketCreate(generic.CreateView): #LoginRequiredMixin, PermissionRequiredMixin, 
-    # permission_required = 'book_shop_app.add_author' 
-    # login_url = reverse_lazy('user:login')
+class Monitoring_ketCreate(LoginRequiredMixin, PermissionRequiredMixin, generic.CreateView):  
+    permission_required = 'monitoring_ket.add_monitoring_ket' 
+    login_url = reverse_lazy('user:login')
     model = models.Monitoring_ket
     
     def get(self, request):
@@ -52,9 +56,9 @@ class Monitoring_ketCreate(generic.CreateView): #LoginRequiredMixin, PermissionR
 
 
 
-class Monitoring_ketUpdate(generic.UpdateView):  #LoginRequiredMixin, PermissionRequiredMixin, 
-    #permission_required = 'book_shop_app.change_author'
-    #login_url = reverse_lazy('user:login')
+class Monitoring_ketUpdate(LoginRequiredMixin, PermissionRequiredMixin, generic.UpdateView): 
+    permission_required = 'monitoring_ket.change_monitoring_ket' 
+    login_url = reverse_lazy('user:login')
     model = models.Monitoring_ket
     fields = ['date', 'group', 'animal_1', 'animal_2', 'animal_3', 'animal_4',
               'animal_5', 'animal_6', 'animal_7', 'animal_8', 'animal_9', 'animal_10',

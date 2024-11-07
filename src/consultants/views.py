@@ -1,11 +1,10 @@
 from django.urls import reverse_lazy
 from django.views import generic
-from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Organization, Consultant
 from .forms import OrganizationForm
 from django.shortcuts import render, redirect
 from . import models
-
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
 def search(request):
     query = request.GET.get('q')
@@ -16,8 +15,10 @@ def search(request):
     return render(request, 'consultants/search_results.html', {'organizations': organizations, 'query': organization})
 
 
-class OrganizationListView(LoginRequiredMixin, generic.ListView):
+class OrganizationListView(LoginRequiredMixin, PermissionRequiredMixin, generic.ListView):
     """Список организаций, доступных текущему консультанту."""
+    permission_required = 'consultants.view_organization' 
+    login_url = reverse_lazy('user:login')
     model = Organization
     template_name = 'consultants/organization_list.html'
 
@@ -26,8 +27,10 @@ class OrganizationListView(LoginRequiredMixin, generic.ListView):
         consultant = self.request.user.consultant
         return Organization.objects.filter(consultant=consultant)
 
-class OrganizationCreateView(LoginRequiredMixin, generic.CreateView):
+class OrganizationCreateView(LoginRequiredMixin, PermissionRequiredMixin, generic.CreateView):
     """Создание новой организации."""
+    permission_required = 'consultants.add_organization' 
+    login_url = reverse_lazy('user:login')
     model = Organization
     form_class = OrganizationForm
     template_name = 'consultants/organization_form.html'
@@ -38,8 +41,10 @@ class OrganizationCreateView(LoginRequiredMixin, generic.CreateView):
         form.instance.consultant = self.request.user.consultant
         return super().form_valid(form)
 
-class OrganizationDetailView(LoginRequiredMixin, generic.DetailView):
+class OrganizationDetailView(LoginRequiredMixin, PermissionRequiredMixin, generic.DetailView):
     """Детали организации."""
+    permission_required = 'consultants.view_organization' 
+    login_url = reverse_lazy('user:login')
     model = Organization
     template_name = 'consultants/organization_detail.html'
 
@@ -57,8 +62,10 @@ class OrganizationDetailView(LoginRequiredMixin, generic.DetailView):
     
     
 
-class OrganizationUpdateView(LoginRequiredMixin, generic.UpdateView):
+class OrganizationUpdateView(LoginRequiredMixin, PermissionRequiredMixin, generic.UpdateView):
     """Обновление существующей организации."""
+    permission_required = 'consultants.change_organization' 
+    login_url = reverse_lazy('user:login')
     model = Organization
     form_class = OrganizationForm
     template_name = 'consultants/organization_form.html'
@@ -69,8 +76,10 @@ class OrganizationUpdateView(LoginRequiredMixin, generic.UpdateView):
         consultant = self.request.user.consultant
         return Organization.objects.filter(consultant=consultant)
 
-class OrganizationDeleteView(LoginRequiredMixin, generic.DeleteView):
+class OrganizationDeleteView(LoginRequiredMixin, PermissionRequiredMixin, generic.DeleteView):
     """Удаление организации."""
+    permission_required = 'consultants.delete_organization' 
+    login_url = reverse_lazy('user:login')
     model = Organization
     template_name = 'consultants/organization_confirm_delete.html'
     success_url = reverse_lazy('consultants:organization-list')
