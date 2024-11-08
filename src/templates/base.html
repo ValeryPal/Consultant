@@ -106,9 +106,18 @@
                 <li class="nav-item">
                   <a class="nav-link active" href="{% url 'user:personal-account-list' %}">Личный кабинет</a>
                 </li> 
-                
-                
                 {% load group_tags %}
+                {% if user.is_authenticated %}
+                    {% if user|has_group:"Consultant" %}
+
+                <li class="nav-item">
+                  <a class="nav-link active" href="{% url 'consultants:organization-list' %}">Организации</a>
+                </li>
+                {% else %}
+                    {% endif %}
+                {% endif %}  
+
+                
                 {% if user.is_authenticated %}
                     {% if user|has_group:"Administrator" %}
 
@@ -129,30 +138,24 @@
                 </li>
                 {% else %}
                     {% endif %}
-                {% endif %}
-
+                {% endif %} 
                 
-                {% if user.is_authenticated %}
-                    {% if user|has_group:"Consultant" %}
 
+                {% if user.is_authenticated %}
+                    {% if user|has_group:"Assistant" %}
                 <li class="nav-item">
-                  <a class="nav-link active" href="{% url 'consultants:organization-list' %}">Организации</a>
+                  <button class="btn btn-outline-success" type="button"><a href="{% url 'consultants:search' %}">Поиск организации</a></button>
+                </li>
+                <li class="nav-item">
+                  <button class="btn btn-outline-success" type="button"><a href="{% url 'consultants:search-farm' %}">Поиск фермы</a></button>
                 </li>
                 {% else %}
                     {% endif %}
-                {% endif %}
+                {% endif %} 
 
-
-                </li>             
               </ul> 
               
-                {% if user.is_authenticated %}
-                    {% if user|has_group:"Assistant" %}
-              
-                <button class="btn btn-outline-success" type="button"><a href="{% url 'consultants:search' %}">Поиск</a></button>
-              {% else %}
-                    {% endif %}
-                {% endif %}
+
             </div>
           </div>
         </nav>

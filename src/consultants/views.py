@@ -6,13 +6,24 @@ from django.shortcuts import render, redirect
 from . import models
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
+
+# Поиск по названию организации
 def search(request):
     query = request.GET.get('q')
     organization = models.Organization.objects
     organizations = []
     if query:
-        organizations = Organization.objects.filter(name__icontains=query)  # Поиск по названию
+        organizations = Organization.objects.filter(name__icontains=query)  # Поиск по названию организации
     return render(request, 'consultants/search_results.html', {'organizations': organizations, 'query': organization})
+
+# Поиск по названию фермы
+def search_farm(request):
+    query = request.GET.get('q')
+    organization = models.Organization.objects
+    organizations = []
+    if query:
+        organizations = Organization.objects.filter(farm__icontains=query)  # Поиск по названию фермы
+    return render(request, 'consultants/search_results_farm.html', {'organizations': organizations, 'query': organization})
 
 
 class OrganizationListView(LoginRequiredMixin, PermissionRequiredMixin, generic.ListView):
@@ -60,8 +71,6 @@ class OrganizationDetailView(LoginRequiredMixin, PermissionRequiredMixin, generi
         return Organization.objects.filter(consultant=consultant)
 
     
-    
-
 class OrganizationUpdateView(LoginRequiredMixin, PermissionRequiredMixin, generic.UpdateView):
     """Обновление существующей организации."""
     permission_required = 'consultants.change_organization' 

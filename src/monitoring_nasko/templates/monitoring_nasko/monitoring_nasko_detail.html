@@ -88,6 +88,15 @@
         <hr>  
     </div>
     <small><font color='blue'><strong>Добавлено:</strong> {{ object.created_at }}</font></small>
+   
+    {% load group_tags %}
+    {% if user.is_authenticated %}
+        {% if user|has_group:"Consultant" %}
+
     <button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring_nasko:monitoring-nasko-update' monitoring_nasko.id %}">Изменить отчет</a></button>
 
+    {% else %}
+    {% endif %}
+    {% endif %}
+    
 {% endblock MAIN_CONTENT %}

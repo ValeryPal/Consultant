@@ -2,6 +2,7 @@
 {% load crispy_forms_tags %}
 
 {% block MAIN_CONTENT %}
+
 <center>
 <h2><font color='blue'>Организация: {{ object.organization }}</font></h2>
 <br>
@@ -103,6 +104,15 @@
         <hr>  
     </div>
     <small><font color='blue'><strong>Добавлено:</strong> {{ object.created_at }}</font></small>
+
+    {% load group_tags %}
+    {% if user.is_authenticated %}
+        {% if user|has_group:"Consultant" %}
+
     <button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring:monitoringfeeds-update' monitoringfeed.id %}">Изменить отчет</a></button>
+
+    {% else %}
+    {% endif %}
+    {% endif %}
 
 {% endblock MAIN_CONTENT %}

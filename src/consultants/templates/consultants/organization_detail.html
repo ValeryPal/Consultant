@@ -25,6 +25,10 @@
     <th><button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring_ket:monitoring-ket-create' %}">Создать</a></button></th>      
 </tr>
 
+{% load group_tags %}
+{% if user.is_authenticated %}
+    {% if user|has_group:"Consultant" %}
+
 <tr>
     <th>
     {% if organization.monitoringfeeds.all %}
@@ -64,6 +68,10 @@
         {% endif %}
     </th>
 </tr>
+
+{% else %}
+{% endif %}
+{% endif %}
 
 </table>
  

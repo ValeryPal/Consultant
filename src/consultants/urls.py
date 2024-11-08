@@ -11,4 +11,5 @@ urlpatterns = [
     path('5/65/23/4/9/36/12/9/78/21/69/58/56/7/9/11/10/<int:pk>/', views.OrganizationUpdateView.as_view(), name='organization-update'),
     path('organization-delete/<int:pk>/', views.OrganizationDeleteView.as_view(), name='organization-delete'),
     path('search/', views.search, name='search'),
+    path('search-farm/', views.search_farm, name='search-farm'),
 ]

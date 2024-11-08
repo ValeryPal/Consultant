@@ -151,6 +151,13 @@
         <hr>  
     </div>
     <small><font color='blue'><strong>Добавлено:</strong> {{ object.created_at }}</font></small>
-    <button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring_ket:monitoring-ket-update' monitoring_ket.id %}">Изменить отчет</a></button>
 
+    {% load group_tags %}
+    {% if user.is_authenticated %}
+        {% if user|has_group:"Consultant" %}
+
+    <button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring_ket:monitoring-ket-update' monitoring_ket.id %}">Изменить отчет</a></button>
+    {% else %}
+    {% endif %}
+    {% endif %}
 {% endblock MAIN_CONTENT %}
