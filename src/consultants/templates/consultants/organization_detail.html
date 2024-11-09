@@ -9,22 +9,21 @@
 <h4>Менеджер: {{organization.manager}}</h4>
 <h4>Консультант: {{organization.consultant}}</h4>
 
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static '/css/styles.css' %}">
-    
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}">   
 </head>
+<br>
+<h4><font color='blue'>Мониторинги:</font></h4>
+<br>
 <div class="horizontal-scroll">
    
     {% load group_tags %}
 
 <br>
 <table class="table table-striped">
-<tr>
-    <h4><font color='blue'>Мониторинги:</font></h4>
-</tr>
+
 <tr>
     {% if user.is_authenticated %}
         {% if user|has_group:"Consultant" %}
@@ -202,13 +201,13 @@
 </table>
 </div>
 
-
-
-<div class="horizontal-scroll">
 {% if user.is_authenticated %}
 {% if user|has_group:"Consultant" %} 
+<br>
+<h5>Статистика по дойному поголовью:</h5>
+<br>
+<div class="horizontal-scroll">
 
-<h5>Дойное поголовье</h5>
 <table class="table table-striped">
 {% if organization.monitauditmilks.all %}  
     <tr>   
@@ -248,7 +247,7 @@
     </tr>          
     {% endfor %}
     {% else %}
-    отсутствует
+    мониторинги отсутствуют
 {% endif %}
 </table>
 {% else %}
