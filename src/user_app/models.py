@@ -15,7 +15,7 @@ class HomePage (models.Model):
 
 
 class Job(models.Model):
-    name = models.CharField(max_length=30, verbose_name='Должность',)
+    name = models.CharField(max_length=100, verbose_name='Должность',)
 
     def __str__(self):
         return f"{self.name}"

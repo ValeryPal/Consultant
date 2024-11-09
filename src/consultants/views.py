@@ -98,3 +98,6 @@ class OrganizationDeleteView(LoginRequiredMixin, PermissionRequiredMixin, generi
         consultant = self.request.user.consultant
         return Organization.objects.filter(consultant=consultant)
 
+
+
+

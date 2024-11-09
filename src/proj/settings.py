@@ -53,6 +53,7 @@ PROJ_APPS = [
     'monitoring_ph',
     'monitoring_ket',
     'monitoring_nasko',
+    'monit_audit',
 ]
 INSTALLED_APPS += PROJ_APPS
 

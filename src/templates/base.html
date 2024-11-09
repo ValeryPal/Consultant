@@ -105,11 +105,11 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link active" href="{% url 'user:personal-account-list' %}">Личный кабинет</a>
-                </li> 
+                </li>
+
                 {% load group_tags %}
                 {% if user.is_authenticated %}
                     {% if user|has_group:"Consultant" %}
-
                 <li class="nav-item">
                   <a class="nav-link active" href="{% url 'consultants:organization-list' %}">Организации</a>
                 </li>
@@ -120,9 +120,11 @@
                 
                 {% if user.is_authenticated %}
                     {% if user|has_group:"Administrator" %}
-
                 <li class="nav-item">
                   <a class="nav-link active" href="{% url 'user:job-list' %}">Должности</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="{% url 'monit_audit:audit-list' %}">Коровы</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link active" href="{% url 'monitoring:monitoringfeeds-list' %}">Корма</a>
@@ -136,6 +138,9 @@
                 <li class="nav-item">
                   <a class="nav-link active" href="{% url 'monitoring_ket:monitoring-ket-list' %}">Кетоны</a>
                 </li>
+                <li class="nav-item">
+                  <button class="btn btn-outline-success" type="button"><a href="{% url 'consultants:search' %}">Поиск организации</a></button>
+                </li>
                 {% else %}
                     {% endif %}
                 {% endif %} 
@@ -143,6 +148,18 @@
 
                 {% if user.is_authenticated %}
                     {% if user|has_group:"Assistant" %}
+                <li class="nav-item">
+                  <button class="btn btn-outline-success" type="button"><a href="{% url 'consultants:search' %}">Поиск организации</a></button>
+                </li>
+                <li class="nav-item">
+                  <button class="btn btn-outline-success" type="button"><a href="{% url 'consultants:search-farm' %}">Поиск фермы</a></button>
+                </li>
+                {% else %}
+                    {% endif %}
+                {% endif %} 
+
+                {% if user.is_authenticated %}
+                    {% if user|has_group:"Manager" %}
                 <li class="nav-item">
                   <button class="btn btn-outline-success" type="button"><a href="{% url 'consultants:search' %}">Поиск организации</a></button>
                 </li>
