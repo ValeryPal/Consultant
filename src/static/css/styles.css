@@ -1,0 +1,11 @@
+.horizontal-scroll {
+    overflow-x: auto; /* Включаем горизонтальную прокрутку */
+    white-space: nowrap; /* Запрещаем перенос строк */
+    border: 1px solid #ccc; /* Для наглядности добавляем рамку */
+    padding: 10px; /* Добавляем отступы */
+}
+
+.detail-content {
+    display: inline-block; /* Задаем блочный элемент в одну строку */
+    min-width: 800px; /* Минимальная ширина для примера */
+}

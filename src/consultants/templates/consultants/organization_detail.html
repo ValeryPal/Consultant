@@ -1,11 +1,24 @@
 {% extends 'base.html' %}
 
-
 {% block MAIN_CONTENT %}
+{% load static %}
+
+
 <h1>Организация: {{organization.name}}</h1>
 <h3>Подразделение: {{organization.farm}}</h3>
 <h4>Менеджер: {{organization.manager}}</h4>
 <h4>Консультант: {{organization.consultant}}</h4>
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}">
+    
+</head>
+<div class="horizontal-scroll">
+   
+
 
 <br>
 <table class="table table-striped">
@@ -33,7 +46,8 @@
     <th>
     {% if organization.monitoringfeeds.all %}
         {% for monitoringfeed in organization.monitoringfeeds.all %}
-        <a href="{% url 'monitoring:monitoringfeeds-detail' monitoringfeed.id  %}">{{ monitoringfeed.date }}</a><br>
+        <a href="{% url 'monitoring:monitoringfeeds-detail' monitoringfeed.id  %}">
+            {{ monitoringfeed.date }}-<font color='red'>{{ monitoringfeed.group }}</font></a><br>
         {% endfor %}
     {% else %}
     отсутствует
@@ -43,7 +57,8 @@
     <th>
         {% if organization.monitoring_naskos.all %}
             {% for monitoring_nasko in organization.monitoring_naskos.all %}
-            <a href="{% url 'monitoring_nasko:monitoring-nasko-detail' monitoring_nasko.id  %}">{{ monitoring_nasko.date }}</a><br>
+            <a href="{% url 'monitoring_nasko:monitoring-nasko-detail' monitoring_nasko.id  %}">
+                {{ monitoring_nasko.date }}-<font color='red'>{{ monitoring_nasko.group }}</font></a><br>
             {% endfor %}
         {% else %}
         отсутствует
@@ -52,7 +67,8 @@
     <th>
         {% if organization.monitoring_phs.all %}
             {% for monitoring_ph in organization.monitoring_phs.all %}
-            <a href="{% url 'monitoring_ph:monitoring-ph-detail' monitoring_ph.id  %}">{{ monitoring_ph.date }}</a><br>
+            <a href="{% url 'monitoring_ph:monitoring-ph-detail' monitoring_ph.id  %}">
+                {{ monitoring_ph.date }}-<font color='red'>{{ monitoring_ph.group }}</font></a><br>
             {% endfor %}
         {% else %}
         отсутствует
@@ -61,7 +77,8 @@
     <th>
         {% if organization.monitoring_kets.all %}
             {% for monitoring_ket in organization.monitoring_kets.all %}
-            <a href="{% url 'monitoring_ket:monitoring-ket-detail' monitoring_ket.id  %}">{{ monitoring_ket.date }}</a><br>
+            <a href="{% url 'monitoring_ket:monitoring-ket-detail' monitoring_ket.id  %}">
+                {{ monitoring_ket.date }}-<font color='red'>{{ monitoring_ket.group }}</font></a><br>
             {% endfor %}
         {% else %}
         отсутствует
@@ -74,6 +91,8 @@
 {% endif %}
 
 </table>
- 
+</div>
+
 
 {% endblock MAIN_CONTENT %}
+
