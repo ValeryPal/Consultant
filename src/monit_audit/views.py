@@ -56,8 +56,8 @@ class MonitAuditMilkCreate(LoginRequiredMixin, generic.CreateView): #PermissionR
 
 
 
-class MonitAuditMilkUpdate(LoginRequiredMixin, PermissionRequiredMixin, generic.UpdateView):   
-    permission_required = 'monit_audit.change_monit_audit'
+class MonitAuditMilkUpdate(LoginRequiredMixin, generic.UpdateView):   #PermissionRequiredMixin, 
+    #permission_required = 'monit_audit.change_monit_audit'
     login_url = reverse_lazy('user:login')
     model = models.MonitAuditMilk
     template_name = 'monit_audit/audit_form.html'
