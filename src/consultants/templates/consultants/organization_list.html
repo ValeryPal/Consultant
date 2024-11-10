@@ -10,6 +10,13 @@
 <br>
 <button class="btn btn-outline-info" type="button"><a href="{% url 'consultants:organization-create' %}">Создать новую организацию</a></button>
 <br>
+{% else %}
+{% endif %}
+{% endif %}
+
+{% if user.is_authenticated %}
+    {% if user|has_group:"Consultant" or user|has_group:"Administrator" %}
+<br>
 <h1>Список организаций</h1>
 <br>
 <table class="table table-striped">
@@ -36,7 +43,7 @@
 
 
 {% if user.is_authenticated %}
-    {% if user|has_group:"Assistant" %}
+    {% if user|has_group:"Assistant" or user|has_group:"Manager" %}
 <br>
 <br>
 <h2>Ваш мониторинг успешно создан!!!</h2>
@@ -46,28 +53,5 @@
 {% endif %}
 {% endif %}
 
-
-{% if user.is_authenticated %}
-    {% if user|has_group:"Manager" %}
-<br>
-<br>
-<h2>Ваш мониторинг успешно создан!!!</h2>
-<br>
-<h2>Благодарим за работу!!!</h2>
-{% else %}
-{% endif %}
-{% endif %}
-
-
-
-{% if user.is_authenticated %}
-{% if user|has_group:"Administrator" %}
-<br>
-<h1>Вы не принадлежите группе консультант</h1>
-<br>
-
-{% else %}
-{% endif %}
-{% endif %}
 
 {% endblock MAIN_CONTENT %}

@@ -3,7 +3,7 @@
 {% block MAIN_CONTENT %}
 {% load static %}
 
-
+<br>
 <h1>Организация: {{organization.name}}</h1>
 <h3>Подразделение: {{organization.farm}}</h3>
 <h4>Менеджер: {{organization.manager}}</h4>
@@ -15,90 +15,42 @@
     <link rel="stylesheet" href="{% static '/css/styles.css' %}">   
 </head>
 <br>
-<h4><font color='blue'>Мониторинги:</font></h4>
-<br>
-<div class="horizontal-scroll">
-   
-    {% load group_tags %}
 
+{% load group_tags %}
+{% if user.is_authenticated %}
+        {% if user|has_group:"Consultant" or user|has_group:"Assistant" %}
+        <h4><font color='blue'>Создание мониторинга:</font></h4>
+<button class="btn btn-outline-info" type="button"><a href="{% url 'monit_audit:audit-create' %}">Аудит дойного поголовья</a></button> 
+<button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring:monitoringfeeds-create' %}">Кормосмесь (Пенсильванское Сито)</a></button>
+<button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring_nasko:monitoring-nasko-create' %}">Переваримость (сита Наско)</a></button>
+<button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring_ph:monitoring-ph-create' %}">Проверка ph мочи</a></button>
+<button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring_ket:monitoring-ket-create' %}">Проверка на кетоны</a></button>
+        {% else %}
+        {% endif %}
+{% endif %}
+{% if user.is_authenticated %}
+        {% if user|has_group:"Manager" %}
+        <h4><font color='blue'>Создание мониторинга:</font></h4>
+<button class="btn btn-outline-info" type="button"><a href="{% url 'monit_audit:audit-create' %}">Аудит дойного поголовья</a></button>   
+        {% else %}
+        {% endif %}
+{% endif %} 
+<br>
+<br>
+{% if user.is_authenticated %}
+    {% if user|has_group:"Consultant" or user|has_group:"Administrator" %}
+<h4>Мониторинги:</h4>
+<div class="horizontal-scroll">
 <br>
 <table class="table table-striped">
 
 <tr>
-    {% if user.is_authenticated %}
-        {% if user|has_group:"Consultant" %}
-    <th>Молоко:</th>
     <th>Корма:</th>
     <th>Переваримость:</th>
     <th>ph мочи:</th>
     <th>Кетоновые тела:</th>
-    {% else %}
-    {% endif %}
-    {% endif %}
-    {% if user.is_authenticated %}
-        {% if user|has_group:"Assistant" %}
-    <th>Корма:</th>
-    <th>Переваримость:</th>
-    <th>ph мочи:</th>
-    <th>Кетоновые тела:</th>
-    {% else %}
-    {% endif %}
-    {% endif %}
-    {% if user.is_authenticated %}
-        {% if user|has_group:"Manager" %}
-    <th>Молоко:</th>
-    {% else %}
-    {% endif %}
-    {% endif %}
-    
 </tr>
 <tr>
-   
-    {% if user.is_authenticated %}
-        {% if user|has_group:"Consultant" %}
-    <th><button class="btn btn-outline-info" type="button"><a href="{% url 'monit_audit:audit-create' %}">Создать</a></button></th>    
-    <th><button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring:monitoringfeeds-create' %}">Создать</a></button></th>
-    <th><button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring_nasko:monitoring-nasko-create' %}">Создать</a></button></th>
-    <th><button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring_ph:monitoring-ph-create' %}">Создать</a></button></th>
-    <th><button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring_ket:monitoring-ket-create' %}">Создать</a></button></th>
-    {% else %}
-    {% endif %}
-    {% endif %}  
-    
-    {% if user.is_authenticated %}
-        {% if user|has_group:"Assistant" %}    
-    <th><button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring:monitoringfeeds-create' %}">Создать</a></button></th>
-    <th><button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring_nasko:monitoring-nasko-create' %}">Создать</a></button></th>
-    <th><button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring_ph:monitoring-ph-create' %}">Создать</a></button></th>
-    <th><button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring_ket:monitoring-ket-create' %}">Создать</a></button></th>
-    {% else %}
-    {% endif %}
-    {% endif %}
-    
-    {% if user.is_authenticated %}
-        {% if user|has_group:"Manager" %}
-    <th><button class="btn btn-outline-info" type="button"><a href="{% url 'monit_audit:audit-create' %}">Создать</a></button></th>    
-    {% else %}
-    {% endif %}
-    {% endif %}     
-</tr>
-
-
-{% if user.is_authenticated %}
-    {% if user|has_group:"Consultant" %}
-
-<tr>
-    <th>
-    {% if organization.monitauditmilks.all %}
-        {% for monitauditmilk in organization.monitauditmilks.all %}
-        <a href="{% url 'monit_audit:audit-detail' monitauditmilk.id  %}">
-            {{ monitauditmilk.date }}-<font color='red'>{{ monitauditmilk.user_name }}</font></a><br>
-        {% endfor %}
-    {% else %}
-    отсутствует
-    {% endif %}
-    </th>
-
     <th>
     {% if organization.monitoringfeeds.all %}
         {% for monitoringfeed in organization.monitoringfeeds.all %}
@@ -141,70 +93,12 @@
         {% endif %}
     </th>
 </tr>
-
-{% else %}
-{% endif %}
-{% endif %}
-</table>
-
-
-
-{% if user.is_authenticated %}
-{% if user|has_group:"Administrator" %}
-<h5>Дойное поголовье</h5>
-<table class="table table-striped">
-{% if organization.monitauditmilks.all %}  
-    <tr>   
-        <th><center> Дата<br>мониторинга</center></th>
-        <th><center> Поголовье<br> на ферме</center></th>
-        <th><center> Количество<br> дойного<br> поголовья</center></th>
-        <th><center> Среднее<br> количество<br> дней лактации</center></th>
-        <th><center> Общий<br> удой<br> по ферме</center></th>
-        <th><center> Удой на<br> одну корову<br> в сутки, кг</center></th>
-        <th><center> Реализация<br> молока<br> в день</center></th>
-        <th><center> Жирность<br> молока,<br> %</center></th>
-        <th><center> Белок<br> молока,<br> %</center></th>
-        <th><center> Соматика<br> молока,<br> тыс/мл</center></th>
-        <th><center> Количество<br> доений</center></th>
-        <th><center> Вес взрослого<br> животного</center></th>
-        <th><center> Количество<br> отелов за<br> месяц</center></th>
-        <th><center> Вес телят<br> при<br> рождении</center></th>
-        <th><center> ФИО</center></th>
-    </tr>
-    {% for monitauditmilk in organization.monitauditmilks.all %} 
-    <tr>   
-        <th>{{ monitauditmilk.date }}</th>
-        <th><center>{{ monitauditmilk.livestock }}</center></th>
-        <th><center>{{ monitauditmilk.dairy_cattle }}</center></th>
-        <th><center>{{ monitauditmilk.days_lactation }}</center></th>
-        <th><center>{{ monitauditmilk.milk }}</center></th>
-        <th><center>{{ monitauditmilk.milk_cow }}</center></th>
-        <th><center>{{ monitauditmilk.milk_sales }}</center></th>
-        <th><center>{{ monitauditmilk.milk_fat }}</center></th>
-        <th><center>{{ monitauditmilk.milk_protein }}</center></th>
-        <th><center>{{ monitauditmilk.milk_somatics }}</center></th>
-        <th><center>{{ monitauditmilk.number_milkings }}</center></th>
-        <th><center>{{ monitauditmilk.weight_cow }}</center></th>
-        <th><center>{{ monitauditmilk.number_calvings }}</center></th>
-        <th><center>{{ monitauditmilk.calf_weight }}</center></th>
-        <th>{{ monitauditmilk.user_name }}</th>
-    </tr>          
-    {% endfor %}
-    {% else %}
-    отсутствует
-{% endif %}
-    
-{% else %}
-{% endif %}
-{% endif %}
-
 </table>
 </div>
 
-{% if user.is_authenticated %}
-{% if user|has_group:"Consultant" %} 
+
 <br>
-<h5>Статистика по дойному поголовью:</h5>
+<h5>Все аудиты по дойному поголовью:</h5>
 <br>
 <div class="horizontal-scroll">
 
@@ -212,6 +106,7 @@
 {% if organization.monitauditmilks.all %}  
     <tr>   
         <th><center> Дата<br>мониторинга</center></th>
+        <th><center><br> ФИО</center></th>
         <th><center> Поголовье<br> на ферме</center></th>
         <th><center> Количество<br> дойного<br> поголовья</center></th>
         <th><center> Среднее<br> количество<br> дней лактации</center></th>
@@ -225,11 +120,13 @@
         <th><center> Вес взрослого<br> животного</center></th>
         <th><center> Количество<br> отелов за<br> месяц</center></th>
         <th><center> Вес телят<br> при<br> рождении</center></th>
-        <th><center> ФИО</center></th>
+        
     </tr>
     {% for monitauditmilk in organization.monitauditmilks.all %} 
-    <tr>   
-        <th>{{ monitauditmilk.date }}</th>
+    <tr>
+          
+        <th><a href="{% url 'monit_audit:audit-detail' monitauditmilk.id  %}">{{ monitauditmilk.date }}</a></th>
+        <th>{{ monitauditmilk.user_name }}</th>
         <th><center>{{ monitauditmilk.livestock }}</center></th>
         <th><center>{{ monitauditmilk.dairy_cattle }}</center></th>
         <th><center>{{ monitauditmilk.days_lactation }}</center></th>
@@ -243,16 +140,19 @@
         <th><center>{{ monitauditmilk.weight_cow }}</center></th>
         <th><center>{{ monitauditmilk.number_calvings }}</center></th>
         <th><center>{{ monitauditmilk.calf_weight }}</center></th>
-        <th>{{ monitauditmilk.user_name }}</th>
+        
     </tr>          
     {% endfor %}
     {% else %}
     мониторинги отсутствуют
 {% endif %}
 </table>
+
+</div>
+
 {% else %}
 {% endif %}
 {% endif %} 
-</div>
+
 {% endblock MAIN_CONTENT %}
 

@@ -2,9 +2,41 @@
 
 
 {% block MAIN_CONTENT %}
-
-{% if user.is_authenticated %} 
+{% load group_tags %}
+{% if user.is_authenticated %}
+{% if user|has_group:"Consultant" %} 
 <br>
+<br>
+<h3>Ваша группа пользователей "Консультант"</h3>
+{% endif %}
+{% endif %} 
+
+{% if user.is_authenticated %}
+{% if user|has_group:"Assistant" %} 
+<br>
+<br>
+<h3>Ваша группа пользователей "Помощник"</h3>
+{% endif %}
+{% endif %}
+
+{% if user.is_authenticated %}
+{% if user|has_group:"Manager" %} 
+<br>
+<br>
+<h3>Ваша группа пользователей "Менеджер"</h3>
+{% endif %}
+{% endif %}
+
+{% if user.is_authenticated %}
+{% if user|has_group:"Administrator" %} 
+<br>
+<br>
+<h3>Ваша группа пользователей "Руководитель"</h3>
+{% endif %}
+{% endif %}
+
+<br>
+{% if user.is_authenticated %} 
 <br>
 <h3>Вы авторизованный пользователь: {{ user }} </h3>
 <br>
