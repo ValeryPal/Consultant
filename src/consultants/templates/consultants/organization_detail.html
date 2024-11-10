@@ -38,7 +38,7 @@
 <br>
 <br>
 {% if user.is_authenticated %}
-    {% if user|has_group:"Consultant" or user|has_group:"Administrator" %}
+    {% if user|has_group:"Consultant" or user|has_group:"Administrator" or user|has_group:"Manager" %}
 <h4>Мониторинги:</h4>
 <div class="horizontal-scroll">
 <br>
