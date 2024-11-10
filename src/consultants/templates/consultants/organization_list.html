@@ -4,6 +4,16 @@
 {% block MAIN_CONTENT %}
 {% load group_tags %}
 
+{% if user.is_authenticated %}
+    {% if user|has_group:"Assistant" or user|has_group:"Manager" %}
+<br>
+<br>
+<h2>Ваш мониторинг успешно создан!!!</h2>
+<br>
+<h2>Благодарим за работу!!!</h2>
+{% else %}
+{% endif %}
+{% endif %}
 
 {% if user.is_authenticated %}
     {% if user|has_group:"Consultant" %}
@@ -37,16 +47,6 @@
 
 
 
-{% if user.is_authenticated %}
-    {% if user|has_group:"Assistant" or user|has_group:"Manager" %}
-<br>
-<br>
-<h2>Ваш мониторинг успешно создан!!!</h2>
-<br>
-<h2>Благодарим за работу!!!</h2>
-{% else %}
-{% endif %}
-{% endif %}
 
 
 {% endblock MAIN_CONTENT %}
