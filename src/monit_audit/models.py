@@ -12,7 +12,7 @@ class MonitAuditMilk(models.Model):
     dairy_cattle = models.IntegerField(verbose_name='Количество дойного поголовья',  )
     days_lactation = models.IntegerField(verbose_name='Среднее количество дней лактации', )
     milk = models.IntegerField(verbose_name='Общий удой по ферме',  )
-    milk_cow = models.IntegerField(verbose_name='Удой на одну корову в сутки, кг', )
+    milk_cow = models.FloatField(verbose_name='Удой на одну корову в сутки, кг', )
     milk_sales = models.IntegerField(verbose_name='Реализация молока в день',  )
     milk_fat = models.FloatField(verbose_name='Жирность молока, %',  )
     milk_protein = models.FloatField(verbose_name='Белок молока, %',  )
