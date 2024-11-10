@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+
+{% block MAIN_CONTENT %}
+{% load group_tags %}
+
+{% if user.is_authenticated %}
+    {% if user|has_group:"Administrator" %}
+<br>
+<h1>Список всех организаций</h1>
+<br>
+<table class="table table-striped">
+    <tr>
+        <th>Название</a></th>
+        <th>Подразделение</th>
+        <th>Менеджер</th>
+        <th>Консультант</th>
+    </tr>
+    {% for organization in page_obj %}
+    <tr>
+        <th><a href="{% url 'consultants:organization-detail' organization.id %}">{{ organization.name }}</a></th>
+        <th>{{ organization.farm }}</th>
+        <th>{{ organization.manager }}</th>
+        <th>{{ organization.consultant }}</th>
+    </tr>
+    {% endfor %}
+</table>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; Первая</a>
+            <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+        {% endif %}
+
+        <span class="current">
+            Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Следующая</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">Последняя &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+{% else %}
+{% endif %}
+{% endif %}
+
+
+
+{% endblock MAIN_CONTENT %}

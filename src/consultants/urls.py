@@ -12,4 +12,6 @@ urlpatterns = [
     path('organization-delete/<int:pk>/', views.OrganizationDeleteView.as_view(), name='organization-delete'),
     path('search/', views.search, name='search'),
     path('search-farm/', views.search_farm, name='search-farm'),
+    path('organizations/', views.organization_list, name='organiz-list'),
+    path('organiz-manager/', views.organiz_manager_list, name='organiz-manager-list'),
 ]

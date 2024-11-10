@@ -111,7 +111,7 @@
                 {% if user.is_authenticated %}
                     {% if user|has_group:"Consultant" %}
                 <li class="nav-item">
-                  <a class="nav-link active" href="{% url 'consultants:organization-list' %}">Организации</a>
+                  <a class="nav-link active" href="{% url 'consultants:organization-list' %}">Ваши организации</a>
                 </li>
                 {% else %}
                     {% endif %}
@@ -123,7 +123,7 @@
                 <li class="nav-item">
                   <a class="nav-link active" href="{% url 'user:job-list' %}">Должности</a>
                 <li class="nav-item">
-                  <a class="nav-link active" href="{% url 'consultants:organization-list' %}">Организации</a>
+                  <a class="nav-link active" href="{% url 'consultants:organiz-list' %}">Все организации</a>
                 </li>
                 </li>
                 <li class="nav-item">
@@ -164,10 +164,7 @@
                 {% if user.is_authenticated %}
                     {% if user|has_group:"Manager" %}
                 <li class="nav-item">
-                  <button class="btn btn-outline-success" type="button"><a href="{% url 'consultants:search' %}">Поиск организации</a></button>
-                </li>
-                <li class="nav-item">
-                  <button class="btn btn-outline-success" type="button"><a href="{% url 'consultants:search-farm' %}">Поиск фермы</a></button>
+                  <a class="nav-link active" href="{% url 'consultants:organiz-manager-list' %}">Ваши организации</a>
                 </li>
                 {% else %}
                     {% endif %}

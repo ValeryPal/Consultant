@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+
+{% block MAIN_CONTENT %}
+{% load group_tags %}
+
+{% if user.is_authenticated %}
+    {% if user|has_group:"Manager" %}
+<br>
+<h1>Список ваших организаций</h1>
+<br>
+<table class="table table-striped">
+
+{% if organizations %}
+    <tr>
+        <th>Название</a></th>
+        <th>Подразделение</th>
+        <th>Менеджер</th>
+        <th>Консультант</th>
+    </tr>
+    {% for organization in organizations %}
+    <tr>
+        <th><a href="{% url 'consultants:organization-detail' organization.id %}">{{ organization.name }}</a></th>
+        <th>{{ organization.farm }}</th>
+        <th>{{ organization.manager }}</th>
+        <th>{{ organization.consultant }}</th>
+    </tr>
+    {% endfor %}
+
+{% else %}
+<p>Нет организаций для отображения.</p>
+{% endif %}
+</table>
+
+{% else %}
+{% endif %}
+{% endif %}
+
+
+{% endblock MAIN_CONTENT %}

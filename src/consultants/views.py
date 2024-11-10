@@ -5,6 +5,7 @@ from .forms import OrganizationForm
 from django.shortcuts import render, redirect
 from . import models
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.core.paginator import Paginator
 
 
 # Поиск по названию организации
@@ -24,6 +25,33 @@ def search_farm(request):
     if query:
         organizations = Organization.objects.filter(farm__icontains=query)  # Поиск по названию фермы
     return render(request, 'consultants/search_results_farm.html', {'organizations': organizations, 'query': organization})
+
+
+# список организации для группы администратор
+def organization_list(request):
+    organizations = Organization.objects.all()  # Получаем все организации
+    paginator = Paginator(organizations, 10)  # Создаем пагинатор, 10 объектов на страницу
+
+    page_number = request.GET.get('page')  # Получаем номер страницы из GET-запроса
+    page_obj = paginator.get_page(page_number)  # Получаем объекты для текущей страницы
+
+    return render(request, 'consultants/organiz_list.html', {'page_obj': page_obj})
+
+
+# список организации для каждого менеджера
+def organiz_manager_list(request):
+    if request.user.is_authenticated:  # Проверяем, аутентифицирован ли пользователь
+        # Получаем имя пользователя
+        user = request.user
+        
+        # Получаем все организации, у которых имя менеджера совпадает
+        organizations = Organization.objects.filter(manager=user)
+    else:
+        organizations = Organization.objects.none()  # Возвращаем пустой QuerySet, если пользователь не аутентифицирован
+
+    return render(request, 'consultants/organiz_manager_list.html', {'organizations': organizations})
+
+
 
 
 class OrganizationListView(LoginRequiredMixin, PermissionRequiredMixin, generic.ListView):
