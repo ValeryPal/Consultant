@@ -21,6 +21,7 @@
         {% if user|has_group:"Consultant" or user|has_group:"Assistant" %}
         <h4><font color='blue'>Создание мониторинга:</font></h4>
 <button class="btn btn-outline-info" type="button"><a href="{% url 'monit_audit:audit-create' %}">Аудит дойного поголовья</a></button> 
+<button class="btn btn-outline-info" type="button"><a href="{% url 'monit_calves:calves-create' %}">Аудит по телятам</a></button> 
 <button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring:monitoringfeeds-create' %}">Кормосмесь (Пенсильванское Сито)</a></button>
 <button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring_nasko:monitoring-nasko-create' %}">Переваримость (сита Наско)</a></button>
 <button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring_ph:monitoring-ph-create' %}">Проверка ph мочи</a></button>
@@ -143,6 +144,51 @@
 </table>
 
 </div>
+
+
+<br>
+<h5>Все аудиты по молодняку КРС:</h5>
+<br>
+<div class="horizontal-scroll">
+
+<table class="table table-striped">
+{% if organization.monitauditcalvess.all %}  
+    <tr>   
+        <th><center> Дата<br>мониторинга</center></th>
+        <th><center><br> ФИО</center></th>
+        <th><center> Тип<br> содержания</center></th>
+        <th><center> Количество<br> телят в<br> группе, гол</center></th>
+        <th><center> Средний вес<br> телят, кг</center></th>
+        <th><center> Количество<br> боксов для<br> телят, шт</center></th>
+        <th><center> Количество<br> телят<br> 0-2 мес</center></th>
+        <th><center> Количество<br> поений молоком<br> в сутки</center></th>
+        <th><center> Вес телят<br> при<br> рождении, кг</center></th>
+        <th><center> Количество<br> отелов за<br> месяц, гол</center></th>
+             
+    </tr>
+    {% for monitauditcalves in organization.monitauditcalvess.all %} 
+    <tr>
+          
+        <th><a href="{% url 'monit_calves:calves-detail' monitauditcalves.id  %}">{{ monitauditcalves.date }}</a></th>
+        <th>{{ monitauditcalves.user_name }}</th>
+        <th><center>{{ monitauditcalves.content }}</center></th>
+        <th><center>{{ monitauditcalves.livestock_calves }}</center></th>
+        <th><center>{{ monitauditcalves.weight_calves }}</center></th>
+        <th><center>{{ monitauditcalves.number_boxes }}</center></th>
+        <th><center>{{ monitauditcalves.number_calf }}</center></th>
+        <th><center>{{ monitauditcalves.number_milk }}</center></th>
+        <th><center>{{ monitauditcalves.calf_weight }}</center></th>        
+        <th><center>{{ monitauditcalves.number_calvings }}</center></th>
+        
+    </tr>          
+    {% endfor %}
+    {% else %}
+    мониторинги отсутствуют
+{% endif %}
+</table>
+
+</div>
+
 
 {% else %}
 {% endif %}

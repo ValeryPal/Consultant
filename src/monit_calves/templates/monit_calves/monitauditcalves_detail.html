@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block MAIN_CONTENT %}
+<center>
+<h2><font color='blue'>Организация: {{ object.organization }}</font></h2>
+<br>
+<h3>Аудит молодняка КРС (телят) специалистами</h3>
+<h3><font color='orange'> Научно-исследовательского предприятия "Алникор" </font> </font></center></h3>
+</center>
+<br>
+<strong>Дата мониторинга:</strong> {{ object.date }}<br><br>
+    <div>
+        <h4><center>Подробности предоставлены в таблице</center></h4><br>
+    <table class="table table-striped">
+        <tr>
+            <th><small><font color='blue'>Тип содержания:</font> {{ object.content }}</small></th>
+            <th><small><font color='blue'>Количество телят в группе мониторинга, гол:</font> {{ object.livestock_calves }}</small></th>  
+        </tr> 
+        <tr>
+            <th><small><font color='blue'>Средний вес телят, кг:</font> {{ object.weight_calves }}</small></th>
+            <th><small><font color='blue'>Количество боксов для телят</font> {{ object.number_boxes }}</small></th>  
+        </tr> 
+        <tr>
+            <th><small><font color='blue'>Количество телят 0-2 мес, гол:</font> {{ object.number_calf }}</small></th>
+            <th><small><font color='blue'>Количество поений молоком в сутки:</font> {{ object.number_milk }}</small></th>  
+        </tr> 
+        <tr>
+            <th><small><font color='blue'>Вес телят при рождении, кг:</font> {{ object.calf_weight }}</small></th>
+            <th><small><font color='blue'>Количество отелов за месяц, гол:</font> {{ object.number_calvings }}</small></th>  
+        </tr> 
+        
+    </table> 
+        <table class="table table-striped">
+        <tr>
+            {% if monitauditcalves.groups %} 
+            <th><small><font color='blue'>Разделение по группам:</font><br> {{ object.groups }}</small></th> 
+        </tr>
+        {% else %}
+        {% endif %} 
+        <tr>
+            {% if monitauditcalves.diet_composition %}
+            <th><small><font color='blue'>Состав рациона:</font><br> {{ object.diet_composition }}</small></th>  
+        </tr>
+        {% else %}
+        {% endif %} 
+        <tr>
+            {% if monitauditcalves.diet_composition_feed %}
+            <th><small><font color='blue'>Состав комбикорма:</font><br> {{ object.diet_composition_feed }}</small></th>  
+        </tr>
+        {% else %}
+        {% endif %} 
+        <tr>
+            {% if monitauditcalves.notes_diet %}
+            <th><small><font color='blue'>Замечания по рациону:</font><br> {{ object.notes_diet }}</small></th>  
+        </tr>
+        {% else %}
+        {% endif %} 
+        <tr>
+            {% if monitauditcalves.notes_animall %}
+            <th><small><font color='blue'>Замечания по животным:</font><br> {{ object.notes_animall }}</small></th>  
+        </tr>
+        {% else %}
+        {% endif %} 
+        <tr>
+            {% if monitauditcalves.withdrawal %}
+            <th><small><font color='blue'>Выбытие(количество, причины):</font><br> {{ object.withdrawal }}</small></th>  
+        </tr>
+        {% else %}
+        {% endif %} 
+        <tr>
+            {% if monitauditcalves.notes %}
+            <th><small><font color='blue'>Другие проблемы:</font><br> {{ object.notes }}</small></th>  
+        </tr>
+        {% else %}
+        {% endif %} 
+        <tr>
+            {% if monitauditcalves.offers %}
+            <th><small><font color='blue'>Предложения:</font><br> {{ object.offers }}</small></th>  
+        </tr>
+        {% else %}
+        {% endif %} 
+        
+    </table>
+    <br>
+    
+        <strong> {{ object.job }}_____________________________________{{ object.user_name }}</strong><br>
+        
+        <hr>  
+    </div>
+    <small><font color='blue'><strong>Добавлено:</strong> {{ object.created_at }}</font></small>
+
+    {% load group_tags %}
+    {% if user.is_authenticated %}
+        {% if user|has_group:"Consultant" %}
+
+    <button class="btn btn-outline-info" type="button"><a href="{% url 'monit_calves:calves-update' monitauditcalves.id %}">Изменить отчет</a></button>
+    {% else %}
+    {% endif %}
+    {% endif %}
+{% endblock MAIN_CONTENT %}
