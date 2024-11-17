@@ -19,6 +19,7 @@
     {% if user|has_group:"Consultant" %}
 <br>
 <button class="btn btn-outline-info" type="button"><a href="{% url 'consultants:organization-create' %}">Создать новую организацию</a></button>
+
 <br>
 
 <br>
@@ -30,6 +31,7 @@
         <th>Подразделение</th>
         <th>Менеджер</th>
         <th>Консультант</th>
+        <th>Редактировать</th>
     </tr>
     {% for organization in object_list %}
     <tr>
@@ -37,6 +39,7 @@
         <th>{{ organization.farm }}</th>
         <th>{{ organization.manager }}</th>
         <th>{{ organization.consultant }}</th>
+        <th><button class="btn btn-outline-info" type="button"><a href="{% url 'consultants:organization-update' organization.id %}">Изменить</a></button></th>
     </tr>
     {% endfor %}
 </table>
