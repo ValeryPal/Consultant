@@ -64,8 +64,9 @@ class MonitAuditMilkUpdate(LoginRequiredMixin, generic.UpdateView):   #Permissio
     fields = ['date', 'content', 'livestock', 'dairy_cattle', 'days_lactation',
                   'milk', 'milk_cow', 'milk_sales', 'milk_fat', 'milk_protein', 'milk_somatics',
                    'number_milkings', 'weight_cow', 'number_calvings', 'calf_weight',
-                    'groups', 'diet_composition', 'diet_composition_feed', 'notes_diet',
-                     'notes_animall', 'withdrawal', 'notes', 'offers', 'job', 'user_name']
+                    'groups', 'offers_1', 'diet_composition', 'notes_diet', 'diet_composition_feed', 'offers_2',
+                     'notes_animall', 'offers_3', 'withdrawal', 'offers_4',
+                     'notes', 'offers', 'job', 'user_name']
 
 
     def get_context_data(self, **kwargs):

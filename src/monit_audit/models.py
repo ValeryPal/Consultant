@@ -21,14 +21,26 @@ class MonitAuditMilk(models.Model):
     weight_cow = models.IntegerField(verbose_name='Вес взрослого животного',   )
     number_calvings = models.IntegerField(verbose_name='Количество отелов за месяц',  )
     calf_weight = models.IntegerField(verbose_name='Вес телят при рождении',  )
-    groups = models.TextField(verbose_name='Разделение по группам', blank=True,  max_length=4000, )
-    diet_composition = models.TextField(verbose_name='Состав рациона', blank=True,  max_length=4000, )
-    diet_composition_feed = models.TextField(verbose_name='Состав комбикорма', blank=True,  max_length=4000, )
-    notes_diet = models.TextField(verbose_name='Замечания по рациону', blank=True,  max_length=6000, )
-    notes_animall = models.TextField(verbose_name='Замечания по животным', blank=True,  max_length=6000, )
-    withdrawal = models.TextField(verbose_name='Выбытие(количество, причины)', blank=True, max_length=6000, )
-    notes = models.TextField(verbose_name='Другие проблемы', blank=True,  max_length=6000, )
-    offers = models.TextField(verbose_name='Предложения', blank=True,  max_length=6000, )
+
+    groups = models.TextField(verbose_name='Разделение по группам', blank=True, )
+    offers_1 = models.TextField(verbose_name='Предложения по сортировке стада', blank=True, )
+
+    diet_composition = models.TextField(verbose_name='Состав рациона', blank=True, )
+    notes_diet = models.TextField(verbose_name='Предложения по рациону', blank=True, )
+
+    diet_composition_feed = models.TextField(verbose_name='Состав комбикорма', blank=True, )
+    offers_2 = models.TextField(verbose_name='Предложения по комбикорму', blank=True, )
+
+    notes_animall = models.TextField(verbose_name='Замечания по животным', blank=True, )
+    offers_3 = models.TextField(verbose_name='Предложения', blank=True, )
+
+    withdrawal = models.TextField(verbose_name='Выбытие(количество, причины)', blank=True, )
+    offers_4 = models.TextField(verbose_name='Предложения', blank=True, )
+
+    notes = models.TextField(verbose_name='Другие проблемы', blank=True, )
+
+    offers = models.TextField(verbose_name='Предложения и предстоящий план работы', blank=True, )
+    
     created_at = models.DateTimeField(verbose_name='Дата создания записи', default=timezone.now,)
     job = models.ForeignKey(Job, on_delete=models.PROTECT, verbose_name='Должность специалиста', )
     user_name = models.CharField(verbose_name='ФИО', max_length=100, )
