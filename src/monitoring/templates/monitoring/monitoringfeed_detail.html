@@ -12,94 +12,87 @@
 <br>
 <strong>Дата мониторинга:</strong> {{ object.date }}<br>
     <div>
-        <strong>Для анализа качества смешивания и контроля наличия физичечески-эффективной клетчатки проводился отбор готовой
-            кормосмеси в группе:<font color='blue'> {{ object.group }}</font>. Результаты этого анализа предоставлены ниже.
-        </strong><br><br>
-        <h4><center>Пенсильванское сито PSPS4:</center></h4><br>
-    <table class="table table-striped">
+        Для анализа качества смешивания и контроля наличия физически-эффективной клетчатки проводился отбор готовой
+            кормосмеси в группе:<font color='blue'> {{ object.group }}</font>.<br> Результаты этого анализа предоставлены ниже.
+        <br>
+        <center>Пенсильванское сито PSPS4:
+    <table>
+       
         <tr>
-            <th>№ п/п</th>
-            <th>Сито</th>
-            <th><center>Диаметр, мм</center></th>
-            <th><center>Количество остатков, гр.</center></th>
-            <th><center>% остатков на сите</center></th>
-            <th><center>Норма PSPS 2013</center></th>      
+            <td>№<br> п/п<br> </td>
+            <td><center>Сито<br> <br></center></td>
+            <td><center>Диаметр,<br> мм<br></center></td>
+            <td><center>Количество<br> остатков,<br> гр.</center></td>
+            <td><center>%<br> остатков<br> на сите</center></td>
+            <td><center>Норма<br> PSPS<br> 2013</center></td>      
         </tr>   
         <tr>
-            <th>1</th>
-            <th>верхнее</th>
-            <th><center>19</center></th>
-            <th><center>{{object.feed_1}}</center></th>
-            <th><center>{{object.percent_feed_1}}</center></th>
-            <th><center>2-8</center></th>
-            <th>
+            <td>1</td>
+            <td>верхнее</td>
+            <td><center>19</center></td>
+            <td><center>{{object.feed_1}}</center></td>
+            <td><center>{{object.percent_feed_1}}</center></td>
+            <td><center>2-8</center></td>
+            
         </tr>
         <tr>
-            <th>2</th>
-            <th>среднее</th>
-            <th><center>8</center></th>
-            <th><center>{{object.feed_2}}</center></th>
-            <th><center>{{object.percent_feed_2}}</center></th>
-            <th><center>30-50</center></th>
-            <th>
+            <td>2</td>
+            <td>среднее</td>
+            <td><center>8</center></td>
+            <td><center>{{object.feed_2}}</center></td>
+            <td><center>{{object.percent_feed_2}}</center></td>
+            <td><center>30-50</center></td>
+            
         </tr>
         <tr>
-            <th>3</th>
-            <th>нижнее</th>
-            <th><center>4</center></th>
-            <th><center>{{object.feed_3}}</center></th>
-            <th><center>{{object.percent_feed_3}}</center></th>
-            <th><center>10-20</center></th>
-            <th>
+            <td>3</td>
+            <td>нижнее</td>
+            <td><center>4</center></td>
+            <td><center>{{object.feed_3}}</center></td>
+            <td><center>{{object.percent_feed_3}}</center></td>
+            <td><center>10-20</center></td>
+            
         </tr>
         <tr>
-            <th>4</th>
-            <th>поддон</th>
-            <th><center>-</center></th>
-            <th><center>{{object.feed_4}}</center></th>
-            <th><center>{{object.percent_feed_4}}</center></th>
-            <th><center>30-40</center></th>
-            <th>
+            <td>4</td>
+            <td>поддон</td>
+            <td><center>-</center></td>
+            <td><center>{{object.feed_4}}</center></td>
+            <td><center>{{object.percent_feed_4}}</center></td>
+            <td><center>30-40</center></td>
+            
         </tr>
         <tr>
-            <th>Итого:</th>
-            <th></th>
-            <th></th>
-            <th><center>{{object.summa}}</center></th>
-            <th><center>100</center></th>
-            <th><center>-</center></th>
-            <th>
+            <td colspan="3">Итого:</td>
+            <td><center>{{object.summa}}</center></td>
+            <td><center>100</center></td>
+            <td><center>-</center></td>
+            
         </tr>
-    </table>
+    </table></center>
+
     <br>
-    <table>
+    <center><table>
         <tr>
-            <th>Вид(фото) верхнего сита 19 мм:</th>
+            <th>Вид(фото) верхнего сита 19 мм:<br><img src="{{ object.foto_1.url }}" class="img-thumbnail" alt=""></th>
             <th><pre>   </pre></th>
-            <th>Вид(фото) среднего сита 8 мм:</th>
-        </tr>
-        <tr>
-            <th><img src="{{ object.foto_1.url }}" class="img-thumbnail" alt=""></th>
-            <th><pre>   </pre></th>
-            <th><img src="{{ object.foto_2.url }}" class="img-thumbnail" alt=""></th>
-        </tr>
-        <tr>
-            <th>Вид(фото) нижнего сита 4 мм:</th>
-            <th><pre>   </pre></th>
-            <th>Вид(фото) поддона:</th>
-        </tr>
-        <tr>
-            <th><img src="{{ object.foto_3.url }}" class="img-thumbnail" alt=""></th>
-            <th><pre>   </pre></th>
-            <th><img src="{{ object.foto_4.url }}" class="img-thumbnail" alt=""></th>
+            <th>Вид(фото) среднего сита 8 мм:<br><img src="{{ object.foto_2.url }}" class="img-thumbnail" alt=""></th>
         </tr>
         
-    </table>
-
+    </table></center><br>
+    <center><table>
+        <tr>
+            <th>Вид(фото) нижнего сита 4 мм:<br><img src="{{ object.foto_3.url }}" class="img-thumbnail" alt=""></th>
+            <th><pre>   </pre></th>
+            <th>Вид(фото) поддона:<br><img src="{{ object.foto_4.url }}" class="img-thumbnail" alt=""></th>
+        </tr>
+                
+    </table></center>
+    <br>
         <strong>Замечания по кормосмеси:</strong><br><br> {{ object.feed_mixture }}<br><br>
         <strong>Рекомендации:</strong><br><br> {{ object.recommendations }}<br><br>
         <br>
-        <strong></strong> {{ object.job }}_____________________________________{{ object.user_name }}<br>
+         {{ object.job }}_____________________________________{{ object.user_name }}<br>
         
         <hr>  
     </div>

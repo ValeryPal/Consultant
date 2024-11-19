@@ -11,79 +11,69 @@
 <br>
 <strong>Дата мониторинга:</strong> {{ object.date }}<br>
     <div>
-        <strong>Для контроля переваримости кормов проведено исследование кала на ситах Наско в группе:
-            <font color='blue'> {{ object.group }}</font>. Результаты этого анализа предоставлены ниже.
-        </strong><br><br>
-        <h4><center>Результат промывки кала:</center></h4><br>
-    <table class="table table-striped">
+        Для контроля переваримости кормов проведено исследование кала на "ситах Наско" в группе:
+            <font color='blue'> {{ object.group }}</font>.<br> Результаты этого анализа предоставлены ниже.
+        <br><br>
+        <center>Результат промывки кала:</center><br>
+        <center><table>
         <tr>
-            <th>№ п/п</th>
-            <th>Сито</th>
-            <th><center>Количество остатков, гр.</center></th>
-            <th><center>% остатков на сите</center></th>
-            <th><center>Норма, %</center></th>      
+            <td>№ <br>п/п</td>
+            <td><center>Сито</center></td>
+            <td><center>Количество<br> остатков,<br> гр.</center></td>
+            <td><center>%<br> остатков<br> на сите</center></td>
+            <td><center>Норма,<br> %</center></td>      
         </tr>   
         <tr>
-            <th>1</th>
-            <th>верхнее</th>
-            <th><center>{{object.feces_1}}</center></th>
-            <th><center>{{object.percent_feces_1}}</center></th>
-            <th><center>меньше 10 %</center></th>
-            <th>
+            <td>1</td>
+            <td>верхнее</td>
+            <td><center>{{object.feces_1}}</center></td>
+            <td><center>{{object.percent_feces_1}}</center></td>
+            <td><center>меньше 10 %</center></td>
+            <td>
         </tr>
         <tr>
-            <th>2</th>
-            <th>среднее</th>
-            <th><center>{{object.feces_2}}</center></th>
-            <th><center>{{object.percent_feces_2}}</center></th>
-            <th><center>10-20 %%</center></th>
-            <th>
+            <td>2</td>
+            <td>среднее</td>
+            <td><center>{{object.feces_2}}</center></td>
+            <td><center>{{object.percent_feces_2}}</center></td>
+            <td><center>10-20 %%</center></td>
+            <td>
         </tr>
         <tr>
-            <th>3</th>
-            <th>нижнее</th>
-            <th><center>{{object.feces_3}}</center></th>
-            <th><center>{{object.percent_feces_3}}</center></th>
-            <th><center>больше 70 %</center></th>
-            <th>
+            <td>3</td>
+            <td>нижнее</td>
+            <td><center>{{object.feces_3}}</center></td>
+            <td><center>{{object.percent_feces_3}}</center></td>
+            <td><center>больше 70 %</center></td>
+            <td>
         </tr>
         
         <tr>
-            <th>Итого:</th>
-            <th></th>
-            <th><center>{{object.summa}}</center></th>
-            <th><center>100</center></th>
-            <th><center>-</center></th>
-            <th>
+            
+            <td colspan="2">Итого:</td>
+            <td><center>{{object.summa}}</center></td>
+            <td><center>100</center></td>
+            <td><center>-</center></td>
+            <td>
         </tr>
-    </table>
+    </table></center>
     <br>
-    <table>
+    <center><table>
         <tr>
-            <th>Вид(фото) верхнего сита:</th>
-            <th><pre>   </pre></th>
-            <th>Вид(фото) среднего сита:</th>
-        </tr>
-        <tr>
-            <th><img src="{{ object.foto_1.url }}" class="img-thumbnail" alt=""></th>
-            <th><pre>   </pre></th>
-            <th><img src="{{ object.foto_2.url }}" class="img-thumbnail" alt=""></th>
-        </tr>
-        <tr>
-            <th>Вид(фото) нижнего сита:</th>
-            
-        </tr>
-        <tr>
-            <th><img src="{{ object.foto_3.url }}" class="img-thumbnail" alt=""></th>
-            
+            <td>Вид(фото) верхнего сита:<br><img src="{{ object.foto_1.url }}" class="img-thumbnail" alt=""></td>
+            <td><pre>   </pre></td>
+            <td>Вид(фото) среднего сита:<br><img src="{{ object.foto_2.url }}" class="img-thumbnail" alt=""></td>
         </tr>
         
-    </table>
-
+        <tr>
+            <td>Вид(фото) нижнего сита:<br><img src="{{ object.foto_3.url }}" class="img-thumbnail" alt=""></td>  
+        </tr>
+    </table></center>
+    <br>
         <strong>Замечания:</strong><br><br> {{ object.feces_mixture }}<br><br>
         <strong>Рекомендации:</strong><br><br> {{ object.recommendations }}<br><br>
         <br>
-        <strong></strong> {{ object.job }}_____________________________________{{ object.user_name }}<br>
+         {{ object.job }}_____________________________________{{ object.user_name }}<br>
         
         <hr>  
     </div>
