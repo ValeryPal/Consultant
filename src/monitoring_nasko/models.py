@@ -41,8 +41,8 @@ class Monitoring_nasko(models.Model):
     foto_2 = models.ImageField(verbose_name='Вид(фото) среднего сита', upload_to='foto_monitoring_nasko/%Y/%m/%d', )     # фото среднего сита 8 мм
     foto_3 = models.ImageField(verbose_name='Вид(фото)нижнего сита', upload_to='foto_monitoring_nasko/%Y/%m/%d', )      # фото нижнего сита 4 мм
     
-    feces_mixture = models.TextField(verbose_name='Замечания', max_length=4000, null=True, blank=True)
-    recommendations = models.TextField(verbose_name='Рекомендации', max_length=4000, null=True, blank=True)
+    feces_mixture = models.TextField(verbose_name='Замечания', null=True, blank=True)
+    recommendations = models.TextField(verbose_name='Рекомендации',  null=True, blank=True)
     created_at = models.DateTimeField(verbose_name='Дата создания записи', default=timezone.now,)
     job = models.ForeignKey(Job, on_delete=models.PROTECT, verbose_name='Должность специалиста', null=True )
     user_name = models.CharField(verbose_name='ФИО', max_length=100, null=True)

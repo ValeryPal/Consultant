@@ -54,7 +54,7 @@ class Monitoring_ket(models.Model):
     keton_14 = models.FloatField(verbose_name='Кетоны 14 животного', null=True, blank=True)
     keton_15 = models.FloatField(verbose_name='Кетоны 15 животного', null=True, blank=True)
     ###
-    recommendations = models.TextField(verbose_name='Рекомендации', max_length=4000, null=True, blank=True)
+    recommendations = models.TextField(verbose_name='Рекомендации', null=True, blank=True)
     created_at = models.DateTimeField(verbose_name='Дата создания записи', default=timezone.now,)
     job = models.ForeignKey(Job, on_delete=models.PROTECT, verbose_name='Должность специалиста', null=True )
     user_name = models.CharField(verbose_name='ФИО', max_length=100, null=True)

@@ -44,7 +44,7 @@ class Monitoring_ph(models.Model):
     ph_9 = models.FloatField(verbose_name='ph 9 животного', null=True, blank=True)
     ph_10 = models.FloatField(verbose_name='ph 10 животного', null=True, blank=True)
     ###
-    recommendations = models.TextField(verbose_name='Рекомендации', max_length=4000, null=True, blank=True)
+    recommendations = models.TextField(verbose_name='Рекомендации',  null=True, blank=True)
     created_at = models.DateTimeField(verbose_name='Дата создания записи', default=timezone.now,)
     job = models.ForeignKey(Job, on_delete=models.PROTECT, verbose_name='Должность специалиста', null=True )
     user_name = models.CharField(verbose_name='ФИО', max_length=100, null=True)

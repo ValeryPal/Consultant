@@ -63,8 +63,8 @@ class MonitAuditCalvesUpdate(LoginRequiredMixin, generic.UpdateView):   #Permiss
     template_name = 'monit_calves/calves_form.html'
     fields = ['date', 'content', 'livestock_calves', 'weight_calves', 'number_boxes',
                   'number_calf', 'number_milk', 'calf_weight', 'number_calvings',
-                    'groups', 'diet_composition', 'diet_composition_feed', 'notes_diet',
-                     'notes_animall', 'withdrawal', 'notes', 'offers', 'job', 'user_name']
+                    'groups', 'offers_1', 'diet_composition', 'notes_diet', 'diet_composition_feed', 'offers_2',
+                     'notes_animall', 'offers_3', 'withdrawal', 'offers_4', 'notes', 'offers', 'job', 'user_name']
 
 
     def get_context_data(self, **kwargs):

@@ -36,53 +36,64 @@
         
     </table> 
        
-        <tr>
             {% if monitauditcalves.groups %} 
             <th><small><font color='blue'>Разделение по группам:</font><br> {{ object.groups }}</small></th><br> 
-        </tr>
-        {% else %}
+            {% else %}
         {% endif %} 
-        <tr>
+
+        {% if monitauditcalves.offers_1 %} 
+            <th><small><font color='blue'>Предложения по сортировке телят:</font><br> {{ object.offers_1 }}</small></th><br> 
+            {% else %}
+        {% endif %} 
+        
             {% if monitauditcalves.diet_composition %}
             <th><small><font color='blue'>Состав рациона:</font><br> {{ object.diet_composition }}</small></th><br>  
-        </tr>
-        {% else %}
+            {% else %}
+        {% endif %}
+
+        {% if monitauditcalves.notes_diet %}
+            <th><small><font color='blue'>Предложения по рациону:</font><br> {{ object.notes_diet }}</small></th><br>  
+            {% else %}
         {% endif %} 
-        <tr>
+        
             {% if monitauditcalves.diet_composition_feed %}
             <th><small><font color='blue'>Состав комбикорма:</font><br> {{ object.diet_composition_feed }}</small></th><br>  
-        </tr>
-        {% else %}
+            {% else %}
         {% endif %} 
-        <tr>
-            {% if monitauditcalves.notes_diet %}
-            <th><small><font color='blue'>Замечания по рациону:</font><br> {{ object.notes_diet }}</small></th><br>  
-        </tr>
-        {% else %}
+       
+             {% if monitauditcalves.offers_2 %}
+            <th><small><font color='blue'>Предложения по комбикорму:</font><br> {{ object.offers_2 }}</small></th><br>  
+            {% else %}
         {% endif %} 
-        <tr>
+        
             {% if monitauditcalves.notes_animall %}
-            <th><small><font color='blue'>Замечания по животным:</font><br> {{ object.notes_animall }}</small></th><br>  
-        </tr>
-        {% else %}
+            <th><small><font color='blue'>Замечания по телятам:</font><br> {{ object.notes_animall }}</small></th><br>  
+            {% else %}
         {% endif %} 
-        <tr>
+        
+            {% if monitauditcalves.offers_3 %}
+            <th><small><font color='blue'>Предложения:</font><br> {{ object.offers_3 }}</small></th><br>  
+            {% else %}
+        {% endif %} 
+
             {% if monitauditcalves.withdrawal %}
-            <th><small><font color='blue'>Выбытие(количество, причины):</font><br> {{ object.withdrawal }}</small></th> <br> 
-        </tr>
-        {% else %}
+            <th><small><font color='blue'>Выбытие (количество, причины):</font><br> {{ object.withdrawal }}</small></th> <br> 
+            {% else %}
         {% endif %} 
-        <tr>
+        
+            {% if monitauditcalves.offers_4 %}
+            <th><small><font color='blue'>Предложения:</font><br> {{ object.offers_4 }}</small></th><br>  
+            {% else %}
+        {% endif %} 
+
             {% if monitauditcalves.notes %}
             <th><small><font color='blue'>Другие проблемы:</font><br> {{ object.notes }}</small></th><br>  
-        </tr>
-        {% else %}
+            {% else %}
         {% endif %} 
-        <tr>
+        
             {% if monitauditcalves.offers %}
-            <th><small><font color='blue'>Предложения:</font><br> {{ object.offers }}</small></th> <br> 
-        </tr>
-        {% else %}
+            <th><small><font color='blue'>Предложения и предстоящий план работы:</font><br> {{ object.offers }}</small></th> <br> 
+            {% else %}
         {% endif %} 
         
     <br>
