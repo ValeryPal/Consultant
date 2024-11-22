@@ -13,15 +13,28 @@
     <div>
         Для контроля переваримости кормов проведено исследование кала на "ситах Наско" в группе:
             <font color='blue'> {{ object.group }}</font>.<br> Результаты этого анализа предоставлены ниже.
-        <br><br>
+        <br>
         <center>Результат промывки кала:</center><br>
+
+        <style type="text/css">
+            TABLE {
+             border-collapse: collapse; /* Убираем двойные границы между ячейками */
+             background: rgb(238, 238, 230); /* Цвет фона таблицы */
+             border: 1px solid #000; /* Рамка вокруг таблицы */
+            }
+            TD, TH {
+             padding: 5px; /* Поля вокруг текста */
+             border: 2px solid green; /* Рамка вокруг ячеек */
+            }
+           </style>
+           
         <center><table>
         <tr>
             <td>№ <br>п/п</td>
             <td><center>Сито</center></td>
             <td><center>Количество<br> остатков,<br> гр.</center></td>
             <td><center>%<br> остатков<br> на сите</center></td>
-            <td><center>Норма,<br> %</center></td>      
+            <td><center>Норма, %</center></td>      
         </tr>   
         <tr>
             <td>1</td>
@@ -29,7 +42,7 @@
             <td><center>{{object.feces_1}}</center></td>
             <td><center>{{object.percent_feces_1}}</center></td>
             <td><center>меньше 10 %</center></td>
-            <td>
+            
         </tr>
         <tr>
             <td>2</td>
@@ -37,7 +50,7 @@
             <td><center>{{object.feces_2}}</center></td>
             <td><center>{{object.percent_feces_2}}</center></td>
             <td><center>10-20 %%</center></td>
-            <td>
+            
         </tr>
         <tr>
             <td>3</td>
@@ -45,7 +58,7 @@
             <td><center>{{object.feces_3}}</center></td>
             <td><center>{{object.percent_feces_3}}</center></td>
             <td><center>больше 70 %</center></td>
-            <td>
+            
         </tr>
         
         <tr>
@@ -54,19 +67,19 @@
             <td><center>{{object.summa}}</center></td>
             <td><center>100</center></td>
             <td><center>-</center></td>
-            <td>
+            
         </tr>
     </table></center>
     <br>
     <center><table>
         <tr>
             <td>Вид(фото) верхнего сита:<br><img src="{{ object.foto_1.url }}" class="img-thumbnail" alt=""></td>
-            <td><pre>   </pre></td>
+            
             <td>Вид(фото) среднего сита:<br><img src="{{ object.foto_2.url }}" class="img-thumbnail" alt=""></td>
         </tr>
         
         <tr>
-            <td>Вид(фото) нижнего сита:<br><img src="{{ object.foto_3.url }}" class="img-thumbnail" alt=""></td>  
+            <td colspan="2">Вид(фото) нижнего сита:<br><img src="{{ object.foto_3.url }}" class="img-thumbnail" alt=""></td>  
         </tr>
     </table></center>
     <br>

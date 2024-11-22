@@ -11,16 +11,31 @@
 <br>
 <strong>Дата мониторинга:</strong> {{ object.date }}<br>
     <div>
-        <strong>Для контроля программы профилактики парезов у новотельных коров и эффективности применения кислых солей во втором 
+        Для контроля программы профилактики парезов у новотельных коров и эффективности применения кислых солей во втором 
             периоде сухостоя проводился отбор проб мочи и измерение ее "рh". Результаты этого анализа предоставлены ниже.
-        </strong><br><br>
+        <br>
 
-        <h4><center>"ph мочи" у группы: {{ object.group }}</center></h4><br>
-    <table class="table table-striped">
+        <h5><center><strong>"ph мочи" у группы: {{ object.group }}</strong></center></h5>
+        
+        <style type="text/css">
+            TABLE {
+             border-collapse: collapse; /* Убираем двойные границы между ячейками */
+             background: rgb(238, 238, 230); /* Цвет фона таблицы */
+             border: 1px solid #000; /* Рамка вокруг таблицы */
+            }
+            TD, TH {
+             padding: 5px; /* Поля вокруг текста */
+             border: 2px solid green; /* Рамка вокруг ячеек */
+            }
+           </style>
+
+        <center><table>
+            
+
         <tr>
-            <th>№ животного</th>
-            <th><center>ph мочи</center></th>
-            <th><center>Норма у голштинской породы</center></th>   
+            <th><center>№<br>животного</center></th>
+            <th><center>ph<br> мочи</center></th>
+            <th><center>Норма у голштинской<br> породы</center></th>   
         </tr> 
         {% if monitoring_ph.animal_1 %}  
         <tr>
@@ -103,7 +118,7 @@
         {% else %}
         {% endif %}
         
-    </table>
+    </table></center>
     <br>
     
         <strong>Рекомендации:</strong><br><br> {{ object.recommendations }}<br><br>
