@@ -106,7 +106,7 @@ class OrganizationUpdateView(LoginRequiredMixin, PermissionRequiredMixin, generi
     model = Organization
     # form_class = OrganizationForm
     # template_name = 'consultants/organization_form.html'
-    fields = ['name', 'farm',]
+    fields = ['name', 'farm', 'manager']
     success_url = reverse_lazy('consultants:organization-list')
 
     def get_queryset(self):
