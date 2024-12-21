@@ -21,6 +21,7 @@
 {% if user.is_authenticated %}
         {% if user|has_group:"Consultant" or user|has_group:"Assistant" %}
         <h4><font color='blue'>Создание мониторинга:</font></h4>
+<button class="btn btn-outline-info" type="button"><a href="{% url 'monit_remains:monit-remains-create' %}">Аудит остатка продукции</a></button>
 <button class="btn btn-outline-info" type="button"><a href="{% url 'monit_audit:audit-create' %}">Аудит дойного поголовья</a></button> 
 <button class="btn btn-outline-info" type="button"><a href="{% url 'monit_calves:calves-create' %}">Аудит по телятам</a></button> 
 <button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring:monitoringfeeds-create' %}">Кормосмесь (Пенсильванское Сито)</a></button>
@@ -35,20 +36,43 @@
 {% if user.is_authenticated %}
         {% if user|has_group:"Manager" %}
         <h4><font color='blue'>Создание мониторинга:</font></h4>
+<button class="btn btn-outline-info" type="button"><a href="{% url 'monit_remains:monit-remains-create' %}">Аудит остатка продукции</a></button>
 <button class="btn btn-outline-info" type="button"><a href="{% url 'monit_audit:audit-create' %}">Аудит дойного поголовья</a></button> 
 <button class="btn btn-outline-info" type="button"><a href="{% url 'monit_calves:calves-create' %}">Аудит по телятам</a></button> 
         {% else %}
         {% endif %}
 {% endif %}
 
-
-<br>
 <br>
 {% if user.is_authenticated %}
     {% if user|has_group:"Consultant" or user|has_group:"Administrator" or user|has_group:"Manager" %}
-<h4>Мониторинги:</h4>
-<div class="horizontal-scroll">
+
+    <br>
+    <h5>Аудиты остатков продукции:</h5>
+    <div class="horizontal-scroll">
+    <table class="table table-striped">
+    {% if organization.remains.all %}  
+        <tr>   
+            <th> Дата аудита </th>
+            <th> ФИО </th>
+            <th> Продукция и количество </th>                 
+        </tr>
+        {% for remains in organization.remains.all %} 
+        <tr>
+            <th><a href="{% url 'monit_remains:monit-remains-detail' remains.id  %}">{{ remains.date }}</a></th>
+            <th>{{ remains.user_name }}</th>
+            <th>{{ remains.products }}</th>            
+        </tr>          
+        {% endfor %}
+        {% else %}
+        аудиты отсутствуют
+    {% endif %}
+    </table>
+    </div>
+
 <br>
+<h5>Мониторинги:</h5>
+<div class="horizontal-scroll">
 <table class="table table-striped">
 
 <tr>
@@ -106,9 +130,7 @@
 
 <br>
 <h5>Все аудиты по дойному поголовью:</h5>
-<br>
 <div class="horizontal-scroll">
-
 <table class="table table-striped">
 {% if organization.monitauditmilks.all %}  
     <tr>   
@@ -151,18 +173,15 @@
     </tr>          
     {% endfor %}
     {% else %}
-    мониторинги отсутствуют
+    аудиты отсутствуют
 {% endif %}
 </table>
-
 </div>
 
 
 <br>
-<h5>Все аудиты по молодняку КРС:</h5>
-<br>
+<h5>Все аудиты по телятам (профилакторий):</h5>
 <div class="horizontal-scroll">
-
 <table class="table table-striped">
 {% if organization.monitauditcalvess.all %}  
     <tr>   
@@ -195,10 +214,9 @@
     </tr>          
     {% endfor %}
     {% else %}
-    мониторинги отсутствуют
+    аудиты отсутствуют
 {% endif %}
 </table>
-
 </div>
 
 

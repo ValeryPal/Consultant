@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block MAIN_CONTENT %}
+<br>
+<br>
+<h2><font color='blue'>Организация: {{ object.organization }}</font></h2>
+<br>
+<h4>Количество остатков продукции на {{object.date}}:</h4>
+
+
+<br>
+<h5>{{object.products}}</h5>
+<br>
+    
+    <small><font color='blue'><strong>Добавлено:</strong> {{ object.created_at }}</font></small>
+
+    {% load group_tags %}
+    {% if user.is_authenticated %}
+        {% if user|has_group:"Consultant" %}
+
+    <button class="btn btn-outline-info" type="button"><a href="{% url 'monit_remains:monit-remains-update' object.id %}">Изменить отчет</a></button>
+    {% else %}
+    {% endif %}
+    {% endif %}
+{% endblock MAIN_CONTENT %}
