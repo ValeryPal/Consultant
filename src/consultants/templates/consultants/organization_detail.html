@@ -17,6 +17,7 @@
 <br>
 
 {% load group_tags %}
+
 {% if user.is_authenticated %}
         {% if user|has_group:"Consultant" or user|has_group:"Assistant" %}
         <h4><font color='blue'>Создание мониторинга:</font></h4>
@@ -29,6 +30,17 @@
         {% else %}
         {% endif %}
 {% endif %}
+
+
+{% if user.is_authenticated %}
+        {% if user|has_group:"Manager" %}
+        <h4><font color='blue'>Создание мониторинга:</font></h4>
+<button class="btn btn-outline-info" type="button"><a href="{% url 'monit_audit:audit-create' %}">Аудит дойного поголовья</a></button> 
+<button class="btn btn-outline-info" type="button"><a href="{% url 'monit_calves:calves-create' %}">Аудит по телятам</a></button> 
+        {% else %}
+        {% endif %}
+{% endif %}
+
 
 <br>
 <br>
