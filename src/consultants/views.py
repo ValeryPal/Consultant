@@ -29,7 +29,7 @@ def search_farm(request):
 
 # список организации для группы администратор
 def organization_list(request):
-    organizations = Organization.objects.all()  # Получаем все организации
+    organizations = Organization.objects.all().order_by('name')  # Получаем все организации, плюс сортировка по имени .order_by('name')
     paginator = Paginator(organizations, 10)  # Создаем пагинатор, 10 объектов на страницу
 
     page_number = request.GET.get('page')  # Получаем номер страницы из GET-запроса
@@ -45,7 +45,7 @@ def organiz_manager_list(request):
         user = request.user
         
         # Получаем все организации, у которых имя менеджера совпадает
-        organizations = Organization.objects.filter(manager=user)
+        organizations = Organization.objects.filter(manager=user).order_by('name') # плюс сортировка по имени .order_by('name')
     else:
         organizations = Organization.objects.none()  # Возвращаем пустой QuerySet, если пользователь не аутентифицирован
 
@@ -64,7 +64,8 @@ class OrganizationListView(LoginRequiredMixin, PermissionRequiredMixin, generic.
     def get_queryset(self):
         # Ограничиваем queryset так, чтобы возвращались только организации текущего консультанта
         consultant = self.request.user.consultant
-        return Organization.objects.filter(consultant=consultant)
+        return Organization.objects.filter(consultant=consultant).order_by('name') # плюс сортировка по имени .order_by('name')
+  
 
 class OrganizationCreateView(LoginRequiredMixin, PermissionRequiredMixin, generic.CreateView):
     """Создание новой организации."""
