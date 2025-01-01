@@ -13,6 +13,7 @@
         <th>Дата посещения</a></th>
         <th>ФИО специалиста</a></th>
         <th>Организация</a></th>
+        <th>Комментарии</a></th>
         <th>Продукция и количество</th>
         
     </tr>
@@ -21,7 +22,29 @@
         <th>{{ remain.date }}</th>
         <th>{{ remain.user_name }}</th>
         <th>{{ remain.organization }}</th>
-        <th>{{ remain.products }}</th>
+        <th>{{ remain.comment }}</th>
+        <th>
+            {% if remain.products_name_1 %}   
+                {{ remain.products_name_1 }}-({{ remain.products_1 }} кг);
+            {% else %}
+            {% endif %}
+            {% if remain.products_name_2 %}   
+                {{ remain.products_name_2 }}-({{ remain.products_2 }} кг);
+            {% else %}
+            {% endif %}
+            {% if remain.products_name_3 %}   
+                {{ remain.products_name_3 }}-({{ remain.products_3 }} кг);
+            {% else %}
+            {% endif %}
+            {% if remain.products_name_4 %}   
+                {{ remain.products_name_4 }}-({{ remain.products_4 }} кг);
+            {% else %}
+            {% endif %}
+            {% if remain.products_name_5 %}   
+                {{ remain.products_name_5 }}-({{ remain.products_5 }} кг).
+            {% else %}
+            {% endif %}
+        </th>
     </tr>
     {% endfor %}
 </table>

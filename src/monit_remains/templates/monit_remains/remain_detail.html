@@ -7,13 +7,82 @@
 <h2><font color='blue'>Организация: {{ object.organization }}</font></h2>
 <br>
 <h4>Количество остатков продукции на {{object.date}}:</h4>
-
-
 <br>
-<h5>{{object.products}}</h5>
+{% if object.comment %}
+Коментарии и замечания по остаткам: {{object.comment}}
+{% else %}
+{% endif %}
+<br><br>
+<table class="table table-striped">
+
+        <tr>
+            <th>Продукт</th>
+            <th>Количество<br> продукта, кг</th>
+            <th>Доза применения<br> на 1 гол, кг</th>
+            <th>Количество<br> голов</th>
+            <th>Дни до<br> исчерпания</th>
+            <th>До какого<br> числа</th>
+        </tr>
+        {% if object.products_name_1 %}
+        <tr>
+            <th>{{ object.products_name_1 }}</th>
+            <th>{{ object.products_1 }}</th>
+            <th>{{ object.dose_products_1 }}</th>
+            <th>{{ object.number_1 }}</th>
+            <th>{{ object.days_until_exhaustion_product_1|floatformat:1 }}</th>
+            <th>{{ object.expiry_date_product_1 }}</th>
+        </tr>
+        {% else %}
+        {% endif %}
+        {% if object.products_name_2 %}
+        <tr>
+            <th>{{ object.products_name_2 }}</th>
+            <th>{{ object.products_2 }}</th>
+            <th>{{ object.dose_products_2 }}</th>
+            <th>{{ object.number_2 }}</th>
+            <th>{{ object.days_until_exhaustion_product_2|floatformat:1 }}</th>
+            <th>{{ object.expiry_date_product_2 }}</th>
+        </tr>
+        {% else %}
+        {% endif %}
+        {% if object.products_name_3 %}
+        <tr>
+            <th>{{ object.products_name_3 }}</th>
+            <th>{{ object.products_3 }}</th>
+            <th>{{ object.dose_products_3 }}</th>
+            <th>{{ object.number_3 }}</th>
+            <th>{{ object.days_until_exhaustion_product_3|floatformat:1 }}</th>
+            <th>{{ object.expiry_date_product_3 }}</th>
+        </tr>
+        {% else %}
+        {% endif %}
+        {% if object.products_name_4 %}
+        <tr>
+            <th>{{ object.products_name_4 }}</th>
+            <th>{{ object.products_4 }}</th>
+            <th>{{ object.dose_products_4 }}</th>
+            <th>{{ object.number_4 }}</th>
+            <th>{{ object.days_until_exhaustion_product_4|floatformat:1 }}</th>
+            <th>{{ object.expiry_date_product_4 }}</th>
+        </tr>
+        {% else %}
+        {% endif %}
+        {% if object.products_name_5 %}
+        <tr>
+            <th>{{ object.products_name_5 }}</th>
+            <th>{{ object.products_5 }}</th>
+            <th>{{ object.dose_products_5 }}</th>
+            <th>{{ object.number_5 }}</th>
+            <th>{{ object.days_until_exhaustion_product_5|floatformat:1 }}</th>
+            <th>{{ object.expiry_date_product_5 }}</th>
+        </tr>
+        {% else %}
+        {% endif %}
+</table>
+
 <br>
     
-    <small><font color='blue'><strong>Добавлено:</strong> {{ object.created_at }}</font></small>
+    <small><font color='blue'><strong>Добавлено:</strong> {{ object.created_at }} - {{ object.job }} - {{ object.user_name }} </font></small>
 
     {% load group_tags %}
     {% if user.is_authenticated %}

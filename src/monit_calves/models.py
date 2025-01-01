@@ -9,7 +9,7 @@ class MonitAuditCalves(models.Model):
     date = models.DateField(verbose_name='Дата мониторинга', default=timezone.now, )
     content = models.CharField(verbose_name='Тип содержания', max_length=100, )
     livestock_calves = models.IntegerField(verbose_name='Количество телят в группе мониторинга', )
-    weight_calves = models.IntegerField(verbose_name='Средний вес телят',   )
+    weight_calves = models.IntegerField(verbose_name='Среднесуточный привес, гр.',   )
     number_boxes = models.IntegerField(verbose_name='Количество боксов для телят',  )
     number_calf = models.IntegerField(verbose_name='Количество телят 0-2 мес',  )
     number_milk = models.IntegerField(verbose_name='Количество поений молоком в сутки',  )

@@ -55,13 +55,40 @@
         <tr>   
             <th> Дата аудита </th>
             <th> ФИО </th>
+            <th> Комментарии </th>
             <th> Продукция и количество </th>                 
         </tr>
         {% for remains in organization.remains.all %} 
         <tr>
             <th><a href="{% url 'monit_remains:monit-remains-detail' remains.id  %}">{{ remains.date }}</a></th>
-            <th>{{ remains.user_name }}</th>
-            <th>{{ remains.products }}</th>            
+            <th>{{ remains.user_name }}</th>  
+            <th>{% if remains.comment %}
+                {{ remains.comment }}
+                {% else %}
+                {% endif %}
+            </th>
+            <th>
+                {% if remains.products_name_1 %}   
+                {{ remains.products_name_1 }}-({{ remains.products_1 }} кг);
+            {% else %}
+            {% endif %}
+            {% if remains.products_name_2 %}   
+                {{ remains.products_name_2 }}-({{ remains.products_2 }} кг);
+            {% else %}
+            {% endif %}
+            {% if remains.products_name_3 %}   
+                {{ remains.products_name_3 }}-({{ remains.products_3 }} кг);
+            {% else %}
+            {% endif %}
+            {% if remains.products_name_4 %}   
+                {{ remains.products_name_4 }}-({{ remains.products_4 }} кг);
+            {% else %}
+            {% endif %}
+            {% if remains.products_name_5 %}   
+                {{ remains.products_name_5 }}-({{ remains.products_5 }} кг).
+            {% else %}
+            {% endif %}
+            </th>            
         </tr>          
         {% endfor %}
         {% else %}
@@ -189,7 +216,7 @@
         <th><center><br> ФИО</center></th>
         <th><center> Тип<br> содержания</center></th>
         <th><center> Количество<br> телят в<br> группе, гол</center></th>
-        <th><center> Средний вес<br> телят, кг</center></th>
+        <th><center> Средне-<br>суточный<br> привес, гр.</center></th>
         <th><center> Количество<br> боксов для<br> телят, шт</center></th>
         <th><center> Количество<br> телят<br> 0-2 мес</center></th>
         <th><center> Количество<br> поений молоком<br> в сутки</center></th>
