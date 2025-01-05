@@ -16,12 +16,7 @@ urlpatterns = [
     path('job-create/', views.JobCreate.as_view(), name="job-create"),
     path('job-update/<int:pk>/', views.JobUpdate.as_view(), name="job-update"),
     path('job-delete/<int:pk>/', views.JobDelete.as_view(), name="job-delete"),
-
-    
-    
-    # path('profile-detail/', views.CustomerDetail.as_view(), name="profile-detail"), 
-    # path('profile-create/', views.CustomerCreate.as_view(), name="profile-create"),
-    # path('profile-update/<int:pk>/', views.CustomerUpdate.as_view(), name="profile-update"),
-     
+    path("monit-list/", views.MonitList.as_view(), name="monit-list"),
+    path("audit-list/", views.AuditList.as_view(), name="audit-list"),
     
 ]

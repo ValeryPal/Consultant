@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+
+{% block MAIN_CONTENT %}
+{% load group_tags %}
+
+
+{% if user.is_authenticated %}
+{% if user|has_group:"Administrator" %} 
+<br>
+<br>
+<br>
+<h3>Список всех аудитов по хозяйствам:</h3>
+<br>
+<button class="btn btn-outline-info" type="button"><a href="{% url 'monit_remains:monit-remains-list' %}">Остатки продукции по хозяйствам</a></button>
+<br>
+<br>
+<button class="btn btn-outline-info" type="button"><a href="{% url 'monit_audit:audit-list' %}">Все аудиты дойного поголовья по хозяйствам</a></button>
+<br>
+<br>
+<button class="btn btn-outline-info" type="button"><a href="{% url 'monit_calves:calves-list' %}">Все аудиты телят профилакторий по хозяйствам</a></button>
+<br>
+<br>
+
+{% endif %}
+{% endif %}
+
+{% if user.is_authenticated %}
+{% if user|has_group:"Consultant" %} 
+<br>
+
+{% endif %}
+{% endif %} 
+
+{% if user.is_authenticated %}
+{% if user|has_group:"Assistant" %} 
+<br>
+
+{% endif %}
+{% endif %}
+
+{% if user.is_authenticated %}
+{% if user|has_group:"Manager" %} 
+<br>
+
+{% endif %}
+{% endif %}
+  
+
+
+{% endblock MAIN_CONTENT %}

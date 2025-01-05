@@ -76,6 +76,13 @@ class HomePageList(generic.ListView):
     model = models.HomePage
 
 
+class MonitList(generic.ListView):
+    model = models.Monit
+
+class AuditList(generic.ListView):
+    model = models.Audit
+
+
 class MyLoginView(auth_views.LoginView):
     template_name = "user_app/login.html"
    

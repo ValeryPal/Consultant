@@ -120,37 +120,21 @@
                 
                 {% if user.is_authenticated %}
                     {% if user|has_group:"Administrator" %}
-                <li class="nav-item">
-                  <a class="nav-link active" href="{% url 'user:job-list' %}">Должности</a>
-                <li class="nav-item">
-                  <a class="nav-link active" href="{% url 'consultants:organiz-list' %}">Организации</a>
-                </li>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="{% url 'monit_remains:monit-remains-list' %}">Остатки</a>
-              </li>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" href="{% url 'monit_audit:audit-list' %}">Коровы</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" href="{% url 'monit_calves:calves-list' %}">Телята</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" href="{% url 'monitoring:monitoringfeeds-list' %}">Корма</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" href="{% url 'monitoring_nasko:monitoring-nasko-list' %}">Переваримость</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" href="{% url 'monitoring_ph:monitoring-ph-list' %}">ph мочи</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" href="{% url 'monitoring_ket:monitoring-ket-list' %}">Кетоны</a>
-                </li>
-                <li class="nav-item">
-                  <button class="btn btn-outline-success" type="button"><a href="{% url 'consultants:search' %}">Поиск</a></button>
-                </li>
+                    <li class="nav-item">
+                      <a class="nav-link active" href="{% url 'consultants:organiz-list' %}">Организации</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active" href="{% url 'user:job-list' %}">Должности</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active" href="{% url 'user:audit-list' %}">Аудиты</a>
+                    <li class="nav-item">
+                    <li class="nav-item">
+                      <a class="nav-link active" href="{% url 'user:monit-list' %}">Мониторинги</a>
+                    <li class="nav-item">
+                  <li class="nav-item">
+                    <button class="btn btn-outline-success" type="button"><a href="{% url 'consultants:search' %}">Поиск</a></button>
+                  </li>
                 {% else %}
                     {% endif %}
                 {% endif %} 

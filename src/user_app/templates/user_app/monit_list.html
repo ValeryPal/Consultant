@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+
+{% block MAIN_CONTENT %}
+{% load group_tags %}
+
+
+{% if user.is_authenticated %}
+{% if user|has_group:"Administrator" %} 
+<br>
+<br>
+<br>
+<h3>Список всех мониторингов в хозяйствах:</h3>
+<br>
+<button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring:monitoringfeeds-list' %}">Мониторинги по кормам и кормосмеси</a></button>
+<br>
+<br>
+<button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring_nasko:monitoring-nasko-list' %}">Мониторинги по переваримости и промывке навоза</a></button>
+<br>
+<br>
+<button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring_ph:monitoring-ph-list' %}">Мониторинги по проверке "ph мочи"</a></button>
+<br>
+<br>
+<button class="btn btn-outline-info" type="button"><a href="{% url 'monitoring_ket:monitoring-ket-list' %}">Мониторинги по проверке кетонов</a></button>
+<br>
+<br>
+
+{% endif %}
+{% endif %}
+
+{% if user.is_authenticated %}
+{% if user|has_group:"Consultant" %} 
+<br>
+
+{% endif %}
+{% endif %} 
+
+{% if user.is_authenticated %}
+{% if user|has_group:"Assistant" %} 
+<br>
+
+{% endif %}
+{% endif %}
+
+{% if user.is_authenticated %}
+{% if user|has_group:"Manager" %} 
+<br>
+
+{% endif %}
+{% endif %}
+  
+
+
+{% endblock MAIN_CONTENT %}

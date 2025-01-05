@@ -10,7 +10,14 @@ class PersonalAccount(models.Model):
     pass
 
 
-class HomePage (models.Model):
+class HomePage(models.Model):
+    pass
+
+
+class Monit(models.Model):
+    pass
+
+class Audit(models.Model):
     pass
 
 
