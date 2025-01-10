@@ -7,24 +7,6 @@ from user_app.models import Job
 
 User = get_user_model()
 
-#  (мониторинг остатков)
-# class Remain(models.Model):
-#     organization = models.ForeignKey(Organization, on_delete=models.PROTECT, verbose_name='Организация', related_name='remains',)
-#     date = models.DateField(verbose_name='Дата мониторинга', default=timezone.now, null=True)   
-    
-#     products = models.TextField(verbose_name='Остатки продукции и количество',  null=True, blank=True)
-#     created_at = models.DateTimeField(verbose_name='Дата создания записи', default=timezone.now,)
-#     job = models.ForeignKey(Job, on_delete=models.PROTECT, verbose_name='Должность специалиста', null=True )
-#     user_name = models.CharField(verbose_name='ФИО', max_length=100, null=True)
-
-#     def get_absolute_url(self):
-#        return reverse_lazy('monit_remains:monit-remains-detail', kwargs={"pk": self.pk}) 
-
-#     def __str__(self):
-#         return f'{self.date}  -  {self.products}'
-
-
-
 class Remain(models.Model):
     organization = models.ForeignKey(Organization, on_delete=models.PROTECT, verbose_name='Организация', related_name='remains',)
     date = models.DateField(verbose_name='Дата мониторинга', default=timezone.now, null=True)
@@ -33,7 +15,7 @@ class Remain(models.Model):
     products_name_3 = models.CharField(verbose_name='Продукт 3', null=True, blank=True, max_length=30)
     products_name_4 = models.CharField(verbose_name='Продукт 4', null=True, blank=True, max_length=30)
     products_name_5 = models.CharField(verbose_name='Продукт 5', null=True, blank=True, max_length=30)
-    products_1 = models.PositiveIntegerField(verbose_name='Количество продукта 1, кг', null=True, blank=True,)
+    products_1 = models.PositiveIntegerField(verbose_name='Количество продукта 1, кг', null=True, blank=True, )
     products_2 = models.PositiveIntegerField(verbose_name='Количество продукта 2, кг', null=True, blank=True, )
     products_3 = models.PositiveIntegerField(verbose_name='Количество продукта 3, кг', null=True, blank=True, )
     products_4 = models.PositiveIntegerField(verbose_name='Количество продукта 4, кг', null=True, blank=True, )
@@ -60,10 +42,11 @@ class Remain(models.Model):
         return f"Remain on {self.date} for {self.organization}"
 
     def days_until_exhaustion_product_1(self):
-        """Calculate days until product 1 is exhausted."""
+        """Calculate days until product 1 is exhausted."""       
         if self.dose_products_1 > 0 and self.number_1 > 0:
             required_dose_1 = self.dose_products_1 * self.number_1
             return self.products_1 / required_dose_1
+                
         return float('inf')  # Never exhaust
 
     def days_until_exhaustion_product_2(self):

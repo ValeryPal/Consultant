@@ -67,27 +67,58 @@
                 {% else %}
                 {% endif %}
             </th>
+
             <th>
-                {% if remains.products_name_1 %}   
-                {{ remains.products_name_1 }}-({{ remains.products_1 }} кг);
-            {% else %}
-            {% endif %}
-            {% if remains.products_name_2 %}   
-                {{ remains.products_name_2 }}-({{ remains.products_2 }} кг);
-            {% else %}
-            {% endif %}
-            {% if remains.products_name_3 %}   
-                {{ remains.products_name_3 }}-({{ remains.products_3 }} кг);
-            {% else %}
-            {% endif %}
-            {% if remains.products_name_4 %}   
-                {{ remains.products_name_4 }}-({{ remains.products_4 }} кг);
-            {% else %}
-            {% endif %}
-            {% if remains.products_name_5 %}   
-                {{ remains.products_name_5 }}-({{ remains.products_5 }} кг).
-            {% else %}
-            {% endif %}
+                {% if remains.products_name_1 %}
+                    {% if remains.products_name_1 and remains.products_1 and remains.dose_products_1 and remains.number_1 %}   
+                    <font color='green'>{{ remains.products_name_1 }}</font>-({{ remains.products_1 }} кг. - 
+                    <font color='red'>до {{ remains.expiry_date_product_1 }}</font>);
+                    {% else %}
+                    {{ remains.products_name_1 }}-({{ remains.products_1 }} кг.)
+                    {% endif %}
+                {% else %}
+                {% endif %}
+
+                {% if remains.products_name_2 %}
+
+                    {% if remains.products_name_2 and remains.products_2 and remains.dose_products_2 and remains.number_2 %}   
+                    <font color='green'>{{ remains.products_name_2 }}</font>-({{ remains.products_2 }} кг. - 
+                        <font color='red'>до {{ remains.expiry_date_product_2 }}</font>);
+                    {% else %}
+                    {{ remains.products_name_2 }}-({{ remains.products_2 }} кг.)
+                    {% endif %}
+                {% else %}
+                {% endif %}
+
+                {% if remains.products_name_3 %}
+                    {% if remains.products_name_3 and remains.products_3 and remains.dose_products_3 and remains.number_3 %}   
+                    <font color='green'>{{ remains.products_name_3 }}</font>-({{ remains.products_3 }} кг. - 
+                        <font color='red'>до {{ remains.expiry_date_product_3 }}</font>);
+                    {% else %}
+                    {{ remains.products_name_3 }}-({{ remains.products_3 }} кг.)
+                    {% endif %}
+                {% else %}
+                {% endif %}
+
+                {% if remains.products_name_4 %}
+                    {% if remains.products_name_4 and remains.products_4 and remains.dose_products_4 and remains.number_4 %}   
+                    <font color='green'>{{ remains.products_name_4 }}</font>-({{ remains.products_4 }} кг. - 
+                        <font color='red'>до {{ remains.expiry_date_product_4 }}</font>);
+                    {% else %}
+                    {{ remains.products_name_4 }}-({{ remains.products_4 }} кг.)
+                    {% endif %}
+                {% else %}
+                {% endif %}
+
+                {% if remains.products_name_5 %}
+                    {% if remains.products_name_5 and remains.products_5 and remains.dose_products_5 and remains.number_5 %}   
+                    <font color='green'>{{ remains.products_name_5 }}</font>-({{ remains.products_5 }} кг. - 
+                        <font color='red'>до {{ remains.expiry_date_product_5 }}</font>).
+                    {% else %}
+                    {{ remains.products_name_5 }}-({{ remains.products_5 }} кг.)
+                    {% endif %}
+                {% else %}
+                {% endif %}
             </th>            
         </tr>          
         {% endfor %}

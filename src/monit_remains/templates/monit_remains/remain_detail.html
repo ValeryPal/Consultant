@@ -16,74 +16,230 @@
 <br><br>
 <table class="table table-striped">
 
-    {% if object.products_name_1 or object.products_name_2 or object.products_name_3 or object.products_name_4 or object.products_name_5 %}
+    
         <tr>
+            {% if object.products_name_1 or object.products_name_2 or object.products_name_3 or object.products_name_4 or object.products_name_5 %}
             <th>Продукт</th>
             <th>Количество<br> продукта, кг</th>
             <th>Доза применения<br> на 1 гол, кг</th>
             <th>Количество<br> голов</th>
             <th>Дни до<br> исчерпания</th>
             <th>До какого<br> числа</th>
+            {% else %}
+            Расчет продукции отсутствует
+            {% endif %}
         </tr>
-        {% else %}
-        Расчет продукции отсутствует
-        {% endif %}
+        
+        <tr>
+            {% if object.products_name_1 %}
+                    <th>{{ object.products_name_1 }}</th>
+                    
+                    <th>
+                        {% if object.products_1 %}
+                        {{ object.products_1 }}
+                        {% else %}
+                        нет данных
+                        {% endif %}
+                    </th>
+                    <th>
+                        {% if object.dose_products_1 %}
+                        {{ object.dose_products_1 }}
+                        {% else %}
+                        нет данных
+                        {% endif %}
+                    </th>
+                    <th>{% if object.number_1 %}
+                        {{ object.number_1 }}
+                        {% else %}
+                        нет данных
+                        {% endif %}
+                    </th>
+                    
+                    <th>{% if object.products_1 and object.dose_products_1 and object.number_1 %}
+                        {{ object.days_until_exhaustion_product_1|floatformat:1 }}
+                        {% else %}
+                        нет данных
+                        {% endif %}
+                    </th>
+                    <th>{% if object.products_1 and object.dose_products_1 and object.number_1 %}
+                        {{ object.expiry_date_product_1 }}
+                        {% else %}
+                        нет данных
+                        {% endif %}
+                    </th>
+                    
+            {% else %}
+            {% endif %}
+        </tr>
 
-        {% if object.products_name_1 %}
         <tr>
-            <th>{{ object.products_name_1 }}</th>
-            <th>{{ object.products_1 }}</th>
-            <th>{{ object.dose_products_1 }}</th>
-            <th>{{ object.number_1 }}</th>
-            <th>{{ object.days_until_exhaustion_product_1|floatformat:1 }}</th>
-            <th>{{ object.expiry_date_product_1 }}</th>
+            {% if object.products_name_2 %}
+                    <th>{{ object.products_name_2 }}</th>
+                    
+                    <th>
+                        {% if object.products_2 %}
+                        {{ object.products_2 }}
+                        {% else %}
+                        нет данных
+                        {% endif %}
+                    </th>
+                    <th>
+                        {% if object.dose_products_2 %}
+                        {{ object.dose_products_2 }}
+                        {% else %}
+                        нет данных
+                        {% endif %}
+                    </th>
+                    <th>{% if object.number_2 %}
+                        {{ object.number_2 }}
+                        {% else %}
+                        нет данных
+                        {% endif %}
+                    </th>
+                    
+                    <th>{% if object.products_2 and object.dose_products_2 and object.number_2 %}
+                        {{ object.days_until_exhaustion_product_2|floatformat:1 }}
+                        {% else %}
+                        нет данных
+                        {% endif %}
+                    </th>
+                    <th>{% if object.products_2 and object.dose_products_2 and object.number_2 %}
+                        {{ object.expiry_date_product_2 }}
+                        {% else %}
+                        нет данных
+                        {% endif %}
+                    </th>
+                    
+            {% else %}
+            {% endif %}
         </tr>
-        {% else %}
-        {% endif %}
-        {% if object.products_name_2 %}
+
         <tr>
-            <th>{{ object.products_name_2 }}</th>
-            <th>{{ object.products_2 }}</th>
-            <th>{{ object.dose_products_2 }}</th>
-            <th>{{ object.number_2 }}</th>
-            <th>{{ object.days_until_exhaustion_product_2|floatformat:1 }}</th>
-            <th>{{ object.expiry_date_product_2 }}</th>
+            {% if object.products_name_3 %}
+                    <th>{{ object.products_name_3 }}</th>
+                    
+                    <th>
+                        {% if object.products_3 %}
+                        {{ object.products_3 }}
+                        {% else %}
+                        нет данных
+                        {% endif %}
+                    </th>
+                    <th>
+                        {% if object.dose_products_3 %}
+                        {{ object.dose_products_3 }}
+                        {% else %}
+                        нет данных
+                        {% endif %}
+                    </th>
+                    <th>{% if object.number_3 %}
+                        {{ object.number_3 }}
+                        {% else %}
+                        нет данных
+                        {% endif %}
+                    </th>
+                    
+                    <th>{% if object.products_3 and object.dose_products_3 and object.number_3 %}
+                        {{ object.days_until_exhaustion_product_3|floatformat:1 }}
+                        {% else %}
+                        нет данных
+                        {% endif %}
+                    </th>
+                    <th>{% if object.products_3 and object.dose_products_3 and object.number_3 %}
+                        {{ object.expiry_date_product_3 }}
+                        {% else %}
+                        нет данных
+                        {% endif %}
+                    </th>
+                    
+            {% else %}
+            {% endif %}
         </tr>
-        {% else %}
-        {% endif %}
-        {% if object.products_name_3 %}
+
         <tr>
-            <th>{{ object.products_name_3 }}</th>
-            <th>{{ object.products_3 }}</th>
-            <th>{{ object.dose_products_3 }}</th>
-            <th>{{ object.number_3 }}</th>
-            <th>{{ object.days_until_exhaustion_product_3|floatformat:1 }}</th>
-            <th>{{ object.expiry_date_product_3 }}</th>
+            {% if object.products_name_4 %}
+                    <th>{{ object.products_name_4 }}</th>
+                    
+                    <th>
+                        {% if object.products_4 %}
+                        {{ object.products_4 }}
+                        {% else %}
+                        нет данных
+                        {% endif %}
+                    </th>
+                    <th>
+                        {% if object.dose_products_4 %}
+                        {{ object.dose_products_4 }}
+                        {% else %}
+                        нет данных
+                        {% endif %}
+                    </th>
+                    <th>{% if object.number_4 %}
+                        {{ object.number_4 }}
+                        {% else %}
+                        нет данных
+                        {% endif %}
+                    </th>
+                    
+                    <th>{% if object.products_4 and object.dose_products_4 and object.number_4 %}
+                        {{ object.days_until_exhaustion_product_4|floatformat:1 }}
+                        {% else %}
+                        нет данных
+                        {% endif %}
+                    </th>
+                    <th>{% if object.products_4 and object.dose_products_4 and object.number_4 %}
+                        {{ object.expiry_date_product_4 }}
+                        {% else %}
+                        нет данных
+                        {% endif %}
+                    </th>
+                    
+            {% else %}
+            {% endif %}
         </tr>
-        {% else %}
-        {% endif %}
-        {% if object.products_name_4 %}
+
         <tr>
-            <th>{{ object.products_name_4 }}</th>
-            <th>{{ object.products_4 }}</th>
-            <th>{{ object.dose_products_4 }}</th>
-            <th>{{ object.number_4 }}</th>
-            <th>{{ object.days_until_exhaustion_product_4|floatformat:1 }}</th>
-            <th>{{ object.expiry_date_product_4 }}</th>
+            {% if object.products_name_5 %}
+                    <th>{{ object.products_name_5 }}</th>
+                    
+                    <th>
+                        {% if object.products_5 %}
+                        {{ object.products_5 }}
+                        {% else %}
+                        нет данных
+                        {% endif %}
+                    </th>
+                    <th>
+                        {% if object.dose_products_5 %}
+                        {{ object.dose_products_5 }}
+                        {% else %}
+                        нет данных
+                        {% endif %}
+                    </th>
+                    <th>{% if object.number_5 %}
+                        {{ object.number_5 }}
+                        {% else %}
+                        нет данных
+                        {% endif %}
+                    </th>
+                    
+                    <th>{% if object.products_5 and object.dose_products_5 and object.number_5 %}
+                        {{ object.days_until_exhaustion_product_5|floatformat:1 }}
+                        {% else %}
+                        нет данных
+                        {% endif %}
+                    </th>
+                    <th>{% if object.products_5 and object.dose_products_5 and object.number_5 %}
+                        {{ object.expiry_date_product_5 }}
+                        {% else %}
+                        нет данных
+                        {% endif %}
+                    </th>
+                    
+            {% else %}
+            {% endif %}
         </tr>
-        {% else %}
-        {% endif %}
-        {% if object.products_name_5 %}
-        <tr>
-            <th>{{ object.products_name_5 }}</th>
-            <th>{{ object.products_5 }}</th>
-            <th>{{ object.dose_products_5 }}</th>
-            <th>{{ object.number_5 }}</th>
-            <th>{{ object.days_until_exhaustion_product_5|floatformat:1 }}</th>
-            <th>{{ object.expiry_date_product_5 }}</th>
-        </tr>
-        {% else %}
-        {% endif %}
+               
 </table>
 
 <br>
@@ -92,7 +248,7 @@
 
     {% load group_tags %}
     {% if user.is_authenticated %}
-        {% if user|has_group:"Consultant" %}
+        {% if user|has_group:"Consultant" or user|has_group:"Manager" %}
 
     <button class="btn btn-outline-info" type="button"><a href="{% url 'monit_remains:monit-remains-update' object.id %}">Изменить отчет</a></button>
     {% else %}
