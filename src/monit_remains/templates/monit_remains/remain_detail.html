@@ -11,10 +11,12 @@
 {% if object.comment %}
 Коментарии и замечания по остаткам: {{object.comment}}
 {% else %}
+Коментарии отсутствуют
 {% endif %}
 <br><br>
 <table class="table table-striped">
 
+    {% if object.products_name_1 or object.products_name_2 or object.products_name_3 or object.products_name_4 or object.products_name_5 %}
         <tr>
             <th>Продукт</th>
             <th>Количество<br> продукта, кг</th>
@@ -23,6 +25,10 @@
             <th>Дни до<br> исчерпания</th>
             <th>До какого<br> числа</th>
         </tr>
+        {% else %}
+        Расчет продукции отсутствует
+        {% endif %}
+
         {% if object.products_name_1 %}
         <tr>
             <th>{{ object.products_name_1 }}</th>
