@@ -34,7 +34,7 @@ class MonitAuditMilk(models.Model):
     notes_animall = models.TextField(verbose_name='Замечания по животным', blank=True, )
     offers_3 = models.TextField(verbose_name='Предложения', blank=True, )
 
-    withdrawal = models.TextField(verbose_name='Выбытие(количество, причины)', blank=True, )
+    withdrawal = models.TextField(verbose_name='Выбытие (количество, причины)', blank=True, )
     offers_4 = models.TextField(verbose_name='Предложения', blank=True, )
 
     notes = models.TextField(verbose_name='Другие проблемы', blank=True, )

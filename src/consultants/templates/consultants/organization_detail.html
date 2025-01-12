@@ -238,6 +238,30 @@
 
 
 <br>
+<h5>Статистика по выбытию коров (информация из аудита):</h5>
+<div class="horizontal-scroll">
+<table class="table table-striped">
+{% if organization.monitauditmilks.all %}  
+    <tr>   
+        <th>Дата мониторинга - Выбытие (количество, причины)</th>        
+    </tr>
+    {% for monitauditmilk in organization.monitauditmilks.all %} 
+    <tr>
+        {% if monitauditmilk.withdrawal %}
+        <th>{{ monitauditmilk.date }} - {{ monitauditmilk.withdrawal }}</th>
+        {% else %}
+        {% endif %}
+    </tr>          
+    {% endfor %}
+    {% else %}
+    аудиты отсутствуют
+{% endif %}
+</table>
+</div>
+
+
+
+<br>
 <h5>Все аудиты по телятам (профилакторий):</h5>
 <div class="horizontal-scroll">
 <table class="table table-striped">
@@ -269,6 +293,29 @@
         <th><center>{{ monitauditcalves.calf_weight }}</center></th>        
         <th><center>{{ monitauditcalves.number_calvings }}</center></th>
         
+    </tr>          
+    {% endfor %}
+    {% else %}
+    аудиты отсутствуют
+{% endif %}
+</table>
+</div>
+
+
+<br>
+<h5>Статистика по выбытию телят (информация из аудита):</h5>
+<div class="horizontal-scroll">
+<table class="table table-striped">
+    {% if organization.monitauditcalvess.all %}  
+    <tr>   
+        <th>Дата мониторинга - Выбытие (количество, причины)</th>        
+    </tr>
+    {% for monitauditcalves in organization.monitauditcalvess.all %} 
+    <tr>
+        {% if monitauditcalves.withdrawal %}
+        <th>{{ monitauditcalves.date }} - {{ monitauditcalves.withdrawal }}</th>
+        {% else %}
+        {% endif %}
     </tr>          
     {% endfor %}
     {% else %}
