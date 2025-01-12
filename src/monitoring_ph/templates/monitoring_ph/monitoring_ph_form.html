@@ -5,12 +5,13 @@
 
 {% if user.is_authenticated %}
 <br><h1>Мониторинг "ph мочи":</h1>
-    <h3>{{ page_title }}</h3>
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form|crispy }} 
-    <button type="submit" class="btn btn-outline-primary">Сохранить</button>
 
-    </form>   
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form|crispy }} 
+<button type="submit" class="btn btn-outline-primary">Сохранить</button>
+
+</form> 
+ 
 {% endif %}         
 {% endblock MAIN_CONTENT %}
