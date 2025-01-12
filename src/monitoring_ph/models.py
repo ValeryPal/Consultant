@@ -33,6 +33,17 @@ class Monitoring_ph(models.Model):
     animal_9 = models.IntegerField(verbose_name='Номер 9 животного', null=True, blank=True)
     animal_10 = models.IntegerField(verbose_name='Номер 10 животного', null=True, blank=True)
     ###
+    calving_1 = models.CharField(verbose_name='Дата перевода в "сухостой-2"  1 животного', max_length=30, null=True, blank=True)
+    calving_2 = models.CharField(verbose_name='Дата перевода в "сухостой-2"  2 животного', max_length=30, null=True, blank=True)
+    calving_3 = models.CharField(verbose_name='Дата перевода в "сухостой-2"  3 животного', max_length=30, null=True, blank=True)
+    calving_4 = models.CharField(verbose_name='Дата перевода в "сухостой-2"  4 животного', max_length=30, null=True, blank=True)
+    calving_5 = models.CharField(verbose_name='Дата перевода в "сухостой-2"  5 животного', max_length=30, null=True, blank=True)
+    calving_6 = models.CharField(verbose_name='Дата перевода в "сухостой-2"  6 животного', max_length=30, null=True, blank=True)
+    calving_7 = models.CharField(verbose_name='Дата перевода в "сухостой-2"  7 животного', max_length=30, null=True, blank=True)
+    calving_8 = models.CharField(verbose_name='Дата перевода в "сухостой-2"  8 животного', max_length=30, null=True, blank=True)
+    calving_9 = models.CharField(verbose_name='Дата перевода в "сухостой-2"  9 животного', max_length=30, null=True, blank=True)
+    calving_10 = models.CharField(verbose_name='Дата перевода в "сухостой-2"  10 животного', max_length=30, null=True, blank=True)
+    ###
     ph_1 = models.FloatField(verbose_name='ph 1 животного', null=True, blank=True)
     ph_2 = models.FloatField(verbose_name='ph 2 животного', null=True, blank=True)
     ph_3 = models.FloatField(verbose_name='ph 3 животного', null=True, blank=True)

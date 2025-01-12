@@ -30,7 +30,7 @@ def search_farm(request):
 # список организации для группы администратор
 def organization_list(request):
     organizations = Organization.objects.all().order_by('name')  # Получаем все организации, плюс сортировка по имени .order_by('name')
-    paginator = Paginator(organizations, 10)  # Создаем пагинатор, 10 объектов на страницу
+    paginator = Paginator(organizations, 20)  # Создаем пагинатор, 10 объектов на страницу
 
     page_number = request.GET.get('page')  # Получаем номер страницы из GET-запроса
     page_obj = paginator.get_page(page_number)  # Получаем объекты для текущей страницы
