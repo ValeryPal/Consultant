@@ -19,7 +19,7 @@
     {% for organization in page_obj %}
     <tr>
         <th><a href="{% url 'consultants:organization-detail' organization.id %}">{{ organization.name }}</a></th>
-        <th>{{ organization.farm }}</th>
+        <th><a href="{% url 'consultants:organization-detail' organization.id %}">{{ organization.farm }}</a></th>
         <th>{{ organization.manager }}</th>
         <th>{{ organization.consultant }}</th>
     </tr>

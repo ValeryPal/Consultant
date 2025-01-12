@@ -36,7 +36,7 @@
     {% for organization in object_list %}
     <tr>
         <th><a href="{% url 'consultants:organization-detail' organization.id %}">{{ organization.name }}</a></th>
-        <th>{{ organization.farm }}</th>
+        <th><a href="{% url 'consultants:organization-detail' organization.id %}">{{ organization.farm }}</a></th>
         <th>{{ organization.manager }}</th>
         <th>{{ organization.consultant }}</th>
         <th><button class="btn btn-outline-info" type="button"><a href="{% url 'consultants:organization-update' organization.id %}">Изменить</a></button></th>
