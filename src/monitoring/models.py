@@ -85,13 +85,13 @@ class MonitoringFeed(models.Model):
     def get_absolute_url(self):
        return reverse_lazy('monitoring:monitoringfeeds-detail', kwargs={"pk": self.pk})  
 
-def compress_image(image, max_width=800, max_height=800):
+def compress_image(image, max_width=700, max_height=700):
     """Изменение фото по размеру и качеству"""
     img = PILImage.open(image)
     img.thumbnail((max_width, max_height), PILImage.Resampling.LANCZOS)
 
     img_io = BytesIO()
-    img.save(img_io, format='JPEG', quality=140)
+    img.save(img_io, format='JPEG', quality=100)
     new_image = ContentFile(img_io.getvalue(), name=image.name)
     
     return new_image
